@@ -1,0 +1,23 @@
+﻿@model wqwz.Models.User
+@using (var modal = Html.Bootstrap().Begin(new Modal().Id("Login")))
+{
+    @modal.Header("登陆")
+    using (Ajax.BeginForm("_Login","User",new AjaxOptions { UpdateTargetId = "loginresult"}))
+    {
+        using (modal.BeginBody())
+        {
+            <div class="form-horizontal">
+                @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Email)
+                @Html.Bootstrap().ControlGroup().PasswordFor(m => m.Pwd)
+            </div>
+        } 
+        <div id="loginresult">
+            @*结果返回处（容器）*@
+        </div>
+        using (modal.BeginFooter())
+        {
+            @Html.Bootstrap().SubmitButton().Text("登陆")
+        }
+    } 
+}
+ 

@@ -1,0 +1,21 @@
+﻿<div class="navbar ">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="#">Title</a>
+            @using (var nav = Html.Bootstrap().Begin(new Nav()))
+            {
+                @nav.ActionLink("Link 1", "action1")
+                @nav.ActionLink("Link 2", "action2")
+                @nav.Link("External Link", "#")
+            }
+
+
+            @*添加一个登陆按钮*@
+            @Html.Bootstrap().Button().Text("登陆").TriggerModal("Login")
+
+        </div>
+    </div>
+</div>
+
+@Html.Action("_Login","User")
+
