@@ -1,23 +1,33 @@
 ﻿@model wqwz.Models.User
-@using (var modal = Html.Bootstrap().Begin(new Modal().Id("Login")))
-{
-    @modal.Header("登陆")
-    using (Ajax.BeginForm("_Login","User",new AjaxOptions { UpdateTargetId = "loginresult"}))
-    {
-        using (modal.BeginBody())
-        {
-            <div class="form-horizontal">
-                @Html.Bootstrap().ControlGroup().TextBoxFor(m => m.Email)
-                @Html.Bootstrap().ControlGroup().PasswordFor(m => m.Pwd)
+<div class="modal fade" id="loginmodal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">登陆</h4>
             </div>
-        } 
-        <div id="loginresult">
-            @*结果返回处（容器）*@
-        </div>
-        using (modal.BeginFooter())
-        {
-            @Html.Bootstrap().SubmitButton().Text("登陆")
-        }
-    } 
-}
+            @using (Ajax.BeginForm("_Login", "User", new AjaxOptions { UpdateTargetId = "loginresult" }))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Name, new { placeholder = "Enter email", Class = "form-control" })
+
+                        @Html.LabelFor(m => m.Pwd)
+                        @Html.TextBoxFor(m => m.Pwd, new { Class = "form-control", type = "password" })
+                        <div id="loginresult">
+                            @*结果返回处（容器）*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+            }
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
  
