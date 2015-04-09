@@ -292,6 +292,7 @@
     <Content Include="Views\Home\_NavBar.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\_Login.cshtml" />
+    <Content Include="Views\Form\Find.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,38 @@
+﻿@model wqwz.Models.Form
+
+@Model.Title
+@Model.ReleaseDate
+
+@foreach (var field in Model.FormFields)
+{
+    @field.Id
+    switch (field.Type)
+    {
+        case wqwz.Models.FormFieldType.Text:
+            <input name="field@field.Id" />
+            break;
+        case wqwz.Models.FormFieldType.Date:
+            break;
+        case wqwz.Models.FormFieldType.Number:
+            break;
+        case wqwz.Models.FormFieldType.Regex:
+            break;
+        case wqwz.Models.FormFieldType.TextArea:
+            break;
+        case wqwz.Models.FormFieldType.EnumRadio:
+            break;
+        case wqwz.Models.FormFieldType.EnumCheck:
+            break;
+        case wqwz.Models.FormFieldType.EnumSelect:
+        <select name="field@field.Id">
+            @foreach (var fieldEnum in field.FormFieldEnum)
+            {
+                <option value="@fieldEnum.Value">@fieldEnum.Name</option>
+            }
+        </select>
+            break;
+        default:
+            break;
+    }
+}
+@Model.Content

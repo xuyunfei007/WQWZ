@@ -24,6 +24,7 @@ namespace wqwz.Models
         public FormFieldType Type { get; set; }
         public int FormId { get; set; }
         public string Regex { get; set; }
+        public string Name { get; set; }
     
         public virtual Form Form { get; set; }
         public virtual ICollection<FormData> FormDatas { get; set; }

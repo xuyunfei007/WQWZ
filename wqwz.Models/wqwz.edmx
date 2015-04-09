@@ -278,11 +278,11 @@
           <Property Name="Title" Type="String" Nullable="false" />
           <Property Name="ReleaseDate" Type="DateTime" Nullable="false" />
           <Property Name="ReleaseUserId" Type="Int32" Nullable="false" />
-          <Property Name="Pass" Type="Boolean" Nullable="false" />
           <Property Name="Type" Type="Int32" Nullable="false" />
           <Property Name="Content" Type="String" Nullable="false" />
           <NavigationProperty Name="NewsType" Relationship="wqwz.NewsNewsType" FromRole="News" ToRole="NewsType" />
           <NavigationProperty Name="User" Relationship="wqwz.NewsUser" FromRole="News" ToRole="User" />
+          <Property Name="Status" Type="wqwz.StatusType" Nullable="false" />
         </EntityType>
         <EntityType Name="NewsType">
           <Key>
@@ -300,7 +300,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Title" Type="String" Nullable="false" />
           <Property Name="ReleaseDate" Type="DateTime" Nullable="false" />
-          <Property Name="Pass" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="wqwz.StatusType" Nullable="false" />
           <Property Name="Content" Type="String" Nullable="false" />
           <NavigationProperty Name="ReleaseUser" Relationship="wqwz.UserForm" FromRole="Form" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
@@ -342,6 +342,7 @@
           <NavigationProperty Name="FormDatas" Relationship="wqwz.FormFieldFormData" FromRole="FormField" ToRole="FormData" />
           <Property Name="Regex" Type="String" Nullable="true" />
           <NavigationProperty Name="FormFieldEnum" Relationship="wqwz.FormFieldFormFieldEnum" FromRole="FormField" ToRole="FormFieldEnum" />
+          <Property Name="Name" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="FormData">
           <Key>
@@ -465,6 +466,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EnumType Name="StatusType">
+          <Member Name="Pass" />
+          <Member Name="Unpass" />
+          <Member Name="Unhandled" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -479,7 +485,6 @@
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
           <ScalarProperty Name="ReleaseUserId" ColumnName="ReleaseUserId" />
-          <ScalarProperty Name="Pass" ColumnName="Pass" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Content" ColumnName="Content" />
         </MappingFragment>
@@ -500,7 +505,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
-          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="Status" ColumnName="Pass" />
           <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="FormTypeId" ColumnName="FormTypeId" />

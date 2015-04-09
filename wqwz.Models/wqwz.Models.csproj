@@ -75,6 +75,9 @@
     <Compile Include="SexType.cs">
       <DependentUpon>wqwz.tt</DependentUpon>
     </Compile>
+    <Compile Include="StatusType.cs">
+      <DependentUpon>wqwz.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>wqwz.tt</DependentUpon>
     </Compile>

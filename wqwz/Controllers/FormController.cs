@@ -19,5 +19,9 @@ namespace wqwz.Controllers
         {
             return base.Add(entity);
         }
+        public override ActionResult Find(int id)
+        {
+            return base.Find(id);
+        }
     }
 }

@@ -23,9 +23,9 @@ namespace wqwz.Models
         public string Title { get; set; }
         public System.DateTime ReleaseDate { get; set; }
         public int ReleaseUserId { get; set; }
-        public bool Pass { get; set; }
         public int Type { get; set; }
         public string Content { get; set; }
+        public StatusType Status { get; set; }
     
         public virtual ICollection<NewsType> NewsType { get; set; }
         public virtual User User { get; set; }

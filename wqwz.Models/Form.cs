@@ -22,7 +22,7 @@ namespace wqwz.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public System.DateTime ReleaseDate { get; set; }
-        public bool Pass { get; set; }
+        public StatusType Status { get; set; }
         public string Content { get; set; }
         public int UserId { get; set; }
         public int FormTypeId { get; set; }
