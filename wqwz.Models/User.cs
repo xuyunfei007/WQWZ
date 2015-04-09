@@ -25,7 +25,7 @@ namespace wqwz.Models
         public UserType Type { get; set; }
         public string Name { get; set; }
         public string Pwd { get; set; }
-        public Sex Sex { get; set; }
+        public SexType Sex { get; set; }
         public System.DateTime RegDate { get; set; }
         public string Email { get; set; }
     

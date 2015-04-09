@@ -10,15 +10,16 @@
 namespace wqwz.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class FormFieldEnum
+    public enum FormFieldType : int
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int Value { get; set; }
-        public int FormFieldId { get; set; }
-    
-        public virtual FormField FormField { get; set; }
+        Text = 0,
+        Date = 1,
+        Number = 2,
+        Regex = 3,
+        TextArea = 4,
+        EnumRadio = 5,
+        EnumCheck = 6,
+        EnumSelect = 7
     }
 }

@@ -14,17 +14,12 @@ namespace wqwz.Models
     
     public partial class FormData
     {
-        public FormData()
-        {
-            this.FormFields = new HashSet<FormField>();
-        }
-    
         public int Id { get; set; }
-        public int FormFieldId { get; set; }
         public int PostUserId { get; set; }
         public System.DateTime Date { get; set; }
+        public int FormFieldId { get; set; }
     
-        public virtual ICollection<FormField> FormFields { get; set; }
         public virtual User User { get; set; }
+        public virtual FormField FormField { get; set; }
     }
 }

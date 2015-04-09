@@ -59,6 +59,9 @@
     <Compile Include="FormFieldEnum.cs">
       <DependentUpon>wqwz.tt</DependentUpon>
     </Compile>
+    <Compile Include="FormFieldType.cs">
+      <DependentUpon>wqwz.tt</DependentUpon>
+    </Compile>
     <Compile Include="FormType.cs">
       <DependentUpon>wqwz.tt</DependentUpon>
     </Compile>
@@ -69,7 +72,7 @@
       <DependentUpon>wqwz.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sex.cs">
+    <Compile Include="SexType.cs">
       <DependentUpon>wqwz.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">

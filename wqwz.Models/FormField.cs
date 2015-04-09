@@ -16,17 +16,17 @@ namespace wqwz.Models
     {
         public FormField()
         {
-            this.Form = new HashSet<Form>();
-            this.FormFieldEnums = new HashSet<FormFieldEnum>();
+            this.FormDatas = new HashSet<FormData>();
+            this.FormFieldEnum = new HashSet<FormFieldEnum>();
         }
     
         public int Id { get; set; }
+        public FormFieldType Type { get; set; }
         public int FormId { get; set; }
-        public int Type { get; set; }
-        public int FormDataId { get; set; }
+        public string Regex { get; set; }
     
-        public virtual ICollection<Form> Form { get; set; }
-        public virtual FormData FormData { get; set; }
-        public virtual ICollection<FormFieldEnum> FormFieldEnums { get; set; }
+        public virtual Form Form { get; set; }
+        public virtual ICollection<FormData> FormDatas { get; set; }
+        public virtual ICollection<FormFieldEnum> FormFieldEnum { get; set; }
     }
 }

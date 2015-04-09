@@ -7,19 +7,17 @@ using wqwz.Models;
 
 namespace wqwz.Controllers
 {
-    public class FormController : BaseController<Form>
-    {
-        public wqwz.Services.BaseService<Form> FormService { get; set; }
+    public partial class FormController : BaseController<Form>
+    {  
+        public wqwz.Services.BaseService<FormType> FormTypeervice { get; set; }
 
         public FormController()
-        {
-            FormService = new Services.BaseService<Form>();
-        }
-
+        { 
+            FormTypeervice = new Services.BaseService<FormType>();
+        } 
         public override ActionResult Add(Form entity)
         {
             return base.Add(entity);
         }
-
     }
 }

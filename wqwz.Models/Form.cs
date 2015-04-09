@@ -16,21 +16,19 @@ namespace wqwz.Models
     {
         public Form()
         {
-            this.FormType = new HashSet<FormType>();
+            this.FormFields = new HashSet<FormField>();
         }
     
         public int Id { get; set; }
         public string Title { get; set; }
         public System.DateTime ReleaseDate { get; set; }
-        public string ReleaseUserId { get; set; }
         public bool Pass { get; set; }
-        public int Type { get; set; }
         public string Content { get; set; }
         public int UserId { get; set; }
-        public int FormFieldId { get; set; }
+        public int FormTypeId { get; set; }
     
         public virtual User ReleaseUser { get; set; }
-        public virtual ICollection<FormType> FormType { get; set; }
-        public virtual FormField FormField { get; set; }
+        public virtual FormType FormType { get; set; }
+        public virtual ICollection<FormField> FormFields { get; set; }
     }
 }

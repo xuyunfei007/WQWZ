@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/08/2015 13:37:11
--- Generated from EDMX file: D:\Documents\百度云同步盘\编程项目\围棋网站\wqwz\wqwz.Models\wqwz.edmx
+-- Date Created: 04/09/2015 16:35:40
+-- Generated from EDMX file: D:\Documents\GitHub\WQWZ\wqwz.Models\wqwz.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -23,20 +23,23 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UserForm]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[FormSet] DROP CONSTRAINT [FK_UserForm];
 GO
-IF OBJECT_ID(N'[dbo].[FK_FormFormType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FormTypeSet] DROP CONSTRAINT [FK_FormFormType];
-GO
-IF OBJECT_ID(N'[dbo].[FK_FormFieldForm]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FormSet] DROP CONSTRAINT [FK_FormFieldForm];
-GO
-IF OBJECT_ID(N'[dbo].[FK_FormDataFormField]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FormFieldSet] DROP CONSTRAINT [FK_FormDataFormField];
-GO
 IF OBJECT_ID(N'[dbo].[FK_NewsUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[NewsSet] DROP CONSTRAINT [FK_NewsUser];
 GO
 IF OBJECT_ID(N'[dbo].[FK_FormDataUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[FormDataSet] DROP CONSTRAINT [FK_FormDataUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FormFieldEnumFormField]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FormFieldEnumSet] DROP CONSTRAINT [FK_FormFieldEnumFormField];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FormTypeForm]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FormSet] DROP CONSTRAINT [FK_FormTypeForm];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FormFormField]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FormFieldSet] DROP CONSTRAINT [FK_FormFormField];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FormFieldFormData]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FormDataSet] DROP CONSTRAINT [FK_FormFieldFormData];
 GO
 
 -- --------------------------------------------------
@@ -63,6 +66,9 @@ IF OBJECT_ID(N'[dbo].[FormFieldSet]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FormDataSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[FormDataSet];
+GO
+IF OBJECT_ID(N'[dbo].[FormFieldEnumSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[FormFieldEnumSet];
 GO
 
 -- --------------------------------------------------
@@ -95,20 +101,17 @@ CREATE TABLE [dbo].[FormSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Title] nvarchar(max)  NOT NULL,
     [ReleaseDate] datetime  NOT NULL,
-    [ReleaseUserId] nvarchar(max)  NOT NULL,
     [Pass] bit  NOT NULL,
-    [Type] int  NOT NULL,
     [Content] nvarchar(max)  NOT NULL,
     [UserId] int  NOT NULL,
-    [FormFieldId] int  NOT NULL
+    [FormTypeId] int  NOT NULL
 );
 GO
 
 -- Creating table 'FormTypeSet'
 CREATE TABLE [dbo].[FormTypeSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL,
-    [FormId] int  NOT NULL
+    [Name] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -127,19 +130,28 @@ GO
 -- Creating table 'FormFieldSet'
 CREATE TABLE [dbo].[FormFieldSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [FormId] int  NOT NULL,
     [Type] int  NOT NULL,
-    [FormDataId] int  NOT NULL
+    [FormId] int  NOT NULL,
+    [Regex] nvarchar(max)  NULL
 );
 GO
 
 -- Creating table 'FormDataSet'
 CREATE TABLE [dbo].[FormDataSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [FormFieldId] int  NOT NULL,
     [PostUserId] int  NOT NULL,
     [Date] datetime  NOT NULL,
+    [FormFieldId] int  NOT NULL,
     [User_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'FormFieldEnumSet'
+CREATE TABLE [dbo].[FormFieldEnumSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Value] int  NOT NULL,
+    [FormFieldId] int  NOT NULL
 );
 GO
 
@@ -189,6 +201,12 @@ ADD CONSTRAINT [PK_FormDataSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'FormFieldEnumSet'
+ALTER TABLE [dbo].[FormFieldEnumSet]
+ADD CONSTRAINT [PK_FormFieldEnumSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
@@ -223,51 +241,6 @@ ON [dbo].[FormSet]
     ([UserId]);
 GO
 
--- Creating foreign key on [FormId] in table 'FormTypeSet'
-ALTER TABLE [dbo].[FormTypeSet]
-ADD CONSTRAINT [FK_FormFormType]
-    FOREIGN KEY ([FormId])
-    REFERENCES [dbo].[FormSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_FormFormType'
-CREATE INDEX [IX_FK_FormFormType]
-ON [dbo].[FormTypeSet]
-    ([FormId]);
-GO
-
--- Creating foreign key on [FormFieldId] in table 'FormSet'
-ALTER TABLE [dbo].[FormSet]
-ADD CONSTRAINT [FK_FormFieldForm]
-    FOREIGN KEY ([FormFieldId])
-    REFERENCES [dbo].[FormFieldSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_FormFieldForm'
-CREATE INDEX [IX_FK_FormFieldForm]
-ON [dbo].[FormSet]
-    ([FormFieldId]);
-GO
-
--- Creating foreign key on [FormDataId] in table 'FormFieldSet'
-ALTER TABLE [dbo].[FormFieldSet]
-ADD CONSTRAINT [FK_FormDataFormField]
-    FOREIGN KEY ([FormDataId])
-    REFERENCES [dbo].[FormDataSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_FormDataFormField'
-CREATE INDEX [IX_FK_FormDataFormField]
-ON [dbo].[FormFieldSet]
-    ([FormDataId]);
-GO
-
 -- Creating foreign key on [User_Id] in table 'NewsSet'
 ALTER TABLE [dbo].[NewsSet]
 ADD CONSTRAINT [FK_NewsUser]
@@ -296,6 +269,66 @@ GO
 CREATE INDEX [IX_FK_FormDataUser]
 ON [dbo].[FormDataSet]
     ([User_Id]);
+GO
+
+-- Creating foreign key on [FormTypeId] in table 'FormSet'
+ALTER TABLE [dbo].[FormSet]
+ADD CONSTRAINT [FK_FormTypeForm]
+    FOREIGN KEY ([FormTypeId])
+    REFERENCES [dbo].[FormTypeSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_FormTypeForm'
+CREATE INDEX [IX_FK_FormTypeForm]
+ON [dbo].[FormSet]
+    ([FormTypeId]);
+GO
+
+-- Creating foreign key on [FormId] in table 'FormFieldSet'
+ALTER TABLE [dbo].[FormFieldSet]
+ADD CONSTRAINT [FK_FormFormField]
+    FOREIGN KEY ([FormId])
+    REFERENCES [dbo].[FormSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_FormFormField'
+CREATE INDEX [IX_FK_FormFormField]
+ON [dbo].[FormFieldSet]
+    ([FormId]);
+GO
+
+-- Creating foreign key on [FormFieldId] in table 'FormDataSet'
+ALTER TABLE [dbo].[FormDataSet]
+ADD CONSTRAINT [FK_FormFieldFormData]
+    FOREIGN KEY ([FormFieldId])
+    REFERENCES [dbo].[FormFieldSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_FormFieldFormData'
+CREATE INDEX [IX_FK_FormFieldFormData]
+ON [dbo].[FormDataSet]
+    ([FormFieldId]);
+GO
+
+-- Creating foreign key on [FormFieldId] in table 'FormFieldEnumSet'
+ALTER TABLE [dbo].[FormFieldEnumSet]
+ADD CONSTRAINT [FK_FormFieldFormFieldEnum]
+    FOREIGN KEY ([FormFieldId])
+    REFERENCES [dbo].[FormFieldSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_FormFieldFormFieldEnum'
+CREATE INDEX [IX_FK_FormFieldFormFieldEnum]
+ON [dbo].[FormFieldEnumSet]
+    ([FormFieldId]);
 GO
 
 -- --------------------------------------------------

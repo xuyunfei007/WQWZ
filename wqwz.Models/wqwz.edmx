@@ -14,6 +14,7 @@
     <EntitySet Name="UserSet" EntityType="wqwz.Store.UserSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FormFieldSet" EntityType="wqwz.Store.FormFieldSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FormDataSet" EntityType="wqwz.Store.FormDataSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FormFieldEnumSet" EntityType="wqwz.Store.FormFieldEnumSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="NewsNewsType" Association="wqwz.Store.NewsNewsType">
       <End Role="News" EntitySet="NewsSet" />
       <End Role="NewsType" EntitySet="NewsTypeSet" />
@@ -22,18 +23,6 @@
       <End Role="User" EntitySet="UserSet" />
       <End Role="Form" EntitySet="FormSet" />
     </AssociationSet>
-    <AssociationSet Name="FormFormType" Association="wqwz.Store.FormFormType">
-      <End Role="Form" EntitySet="FormSet" />
-      <End Role="FormType" EntitySet="FormTypeSet" />
-    </AssociationSet>
-    <AssociationSet Name="FormFieldForm" Association="wqwz.Store.FormFieldForm">
-      <End Role="FormField" EntitySet="FormFieldSet" />
-      <End Role="Form" EntitySet="FormSet" />
-    </AssociationSet>
-    <AssociationSet Name="FormDataFormField" Association="wqwz.Store.FormDataFormField">
-      <End Role="FormData" EntitySet="FormDataSet" />
-      <End Role="FormField" EntitySet="FormFieldSet" />
-    </AssociationSet>
     <AssociationSet Name="NewsUser" Association="wqwz.Store.NewsUser">
       <End Role="News" EntitySet="NewsSet" />
       <End Role="User" EntitySet="UserSet" />
@@ -41,6 +30,22 @@
     <AssociationSet Name="FormDataUser" Association="wqwz.Store.FormDataUser">
       <End Role="FormData" EntitySet="FormDataSet" />
       <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="FormTypeForm" Association="wqwz.Store.FormTypeForm">
+      <End Role="FormType" EntitySet="FormTypeSet" />
+      <End Role="Form" EntitySet="FormSet" />
+    </AssociationSet>
+    <AssociationSet Name="FormFormField" Association="wqwz.Store.FormFormField">
+      <End Role="Form" EntitySet="FormSet" />
+      <End Role="FormField" EntitySet="FormFieldSet" />
+    </AssociationSet>
+    <AssociationSet Name="FormFieldFormData" Association="wqwz.Store.FormFieldFormData">
+      <End Role="FormField" EntitySet="FormFieldSet" />
+      <End Role="FormData" EntitySet="FormDataSet" />
+    </AssociationSet>
+    <AssociationSet Name="FormFieldFormFieldEnum" Association="wqwz.Store.FormFieldFormFieldEnum">
+      <End Role="FormField" EntitySet="FormFieldSet" />
+      <End Role="FormFieldEnum" EntitySet="FormFieldEnumSet" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="NewsSet">
@@ -71,12 +76,10 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ReleaseDate" Type="datetime" Nullable="false" />
-    <Property Name="ReleaseUserId" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Pass" Type="bit" Nullable="false" />
-    <Property Name="Type" Type="int" Nullable="false" />
     <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="FormFieldId" Type="int" Nullable="false" />
+    <Property Name="FormTypeId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="FormTypeSet">
     <Key>
@@ -84,7 +87,6 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="FormId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UserSet">
     <Key>
@@ -103,19 +105,28 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FormId" Type="int" Nullable="false" />
     <Property Name="Type" Type="int" Nullable="false" />
-    <Property Name="FormDataId" Type="int" Nullable="false" />
+    <Property Name="FormId" Type="int" Nullable="false" />
+    <Property Name="Regex" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="FormDataSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FormFieldId" Type="int" Nullable="false" />
     <Property Name="PostUserId" Type="int" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="FormFieldId" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FormFieldEnumSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Value" Type="int" Nullable="false" />
+    <Property Name="FormFieldId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="NewsNewsType">
     <End Role="News" Type="wqwz.Store.NewsSet" Multiplicity="1" />
@@ -138,42 +149,6 @@
       </Principal>
       <Dependent Role="Form">
         <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FormFormType">
-    <End Role="Form" Type="wqwz.Store.FormSet" Multiplicity="1" />
-    <End Role="FormType" Type="wqwz.Store.FormTypeSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Form">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="FormType">
-        <PropertyRef Name="FormId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FormFieldForm">
-    <End Role="FormField" Type="wqwz.Store.FormFieldSet" Multiplicity="1" />
-    <End Role="Form" Type="wqwz.Store.FormSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FormField">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Form">
-        <PropertyRef Name="FormFieldId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FormDataFormField">
-    <End Role="FormData" Type="wqwz.Store.FormDataSet" Multiplicity="1" />
-    <End Role="FormField" Type="wqwz.Store.FormFieldSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FormData">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="FormField">
-        <PropertyRef Name="FormDataId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -201,6 +176,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FormTypeForm">
+    <End Role="FormType" Type="wqwz.Store.FormTypeSet" Multiplicity="1" />
+    <End Role="Form" Type="wqwz.Store.FormSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FormType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Form">
+        <PropertyRef Name="FormTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FormFormField">
+    <End Role="Form" Type="wqwz.Store.FormSet" Multiplicity="1" />
+    <End Role="FormField" Type="wqwz.Store.FormFieldSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Form">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FormField">
+        <PropertyRef Name="FormId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FormFieldFormData">
+    <End Role="FormField" Type="wqwz.Store.FormFieldSet" Multiplicity="1" />
+    <End Role="FormData" Type="wqwz.Store.FormDataSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FormField">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FormData">
+        <PropertyRef Name="FormFieldId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FormFieldFormFieldEnum">
+    <End Role="FormField" Type="wqwz.Store.FormFieldSet" Multiplicity="1" />
+    <End Role="FormFieldEnum" Type="wqwz.Store.FormFieldEnumSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FormField">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FormFieldEnum">
+        <PropertyRef Name="FormFieldId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -221,18 +244,6 @@
             <End Role="User" EntitySet="UserSet" />
             <End Role="Form" EntitySet="FormSet" />
           </AssociationSet>
-          <AssociationSet Name="FormFormType" Association="wqwz.FormFormType">
-            <End Role="Form" EntitySet="FormSet" />
-            <End Role="FormType" EntitySet="FormTypeSet" />
-          </AssociationSet>
-          <AssociationSet Name="FormFieldForm" Association="wqwz.FormFieldForm">
-            <End Role="FormField" EntitySet="FormFieldSet" />
-            <End Role="Form" EntitySet="FormSet" />
-          </AssociationSet>
-          <AssociationSet Name="FormDataFormField" Association="wqwz.FormDataFormField">
-            <End Role="FormData" EntitySet="FormDataSet" />
-            <End Role="FormField" EntitySet="FormFieldSet" />
-          </AssociationSet>
           <AssociationSet Name="NewsUser" Association="wqwz.NewsUser">
             <End Role="News" EntitySet="NewsSet" />
             <End Role="User" EntitySet="UserSet" />
@@ -242,9 +253,21 @@
             <End Role="User" EntitySet="UserSet" />
           </AssociationSet>
           <EntitySet Name="FormFieldEnumSet" EntityType="wqwz.FormFieldEnum" />
-          <AssociationSet Name="FormFieldEnumFormField" Association="wqwz.FormFieldEnumFormField">
-            <End Role="FormFieldEnum" EntitySet="FormFieldEnumSet" />
+          <AssociationSet Name="FormTypeForm" Association="wqwz.FormTypeForm">
+            <End Role="FormType" EntitySet="FormTypeSet" />
+            <End Role="Form" EntitySet="FormSet" />
+          </AssociationSet>
+          <AssociationSet Name="FormFormField" Association="wqwz.FormFormField">
+            <End Role="Form" EntitySet="FormSet" />
             <End Role="FormField" EntitySet="FormFieldSet" />
+          </AssociationSet>
+          <AssociationSet Name="FormFieldFormData" Association="wqwz.FormFieldFormData">
+            <End Role="FormField" EntitySet="FormFieldSet" />
+            <End Role="FormData" EntitySet="FormDataSet" />
+          </AssociationSet>
+          <AssociationSet Name="FormFieldFormFieldEnum" Association="wqwz.FormFieldFormFieldEnum">
+            <End Role="FormField" EntitySet="FormFieldSet" />
+            <End Role="FormFieldEnum" EntitySet="FormFieldEnumSet" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="News">
@@ -277,15 +300,13 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Title" Type="String" Nullable="false" />
           <Property Name="ReleaseDate" Type="DateTime" Nullable="false" />
-          <Property Name="ReleaseUserId" Type="String" Nullable="false" />
           <Property Name="Pass" Type="Boolean" Nullable="false" />
-          <Property Name="Type" Type="Int32" Nullable="false" />
           <Property Name="Content" Type="String" Nullable="false" />
           <NavigationProperty Name="ReleaseUser" Relationship="wqwz.UserForm" FromRole="Form" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="FormType" Relationship="wqwz.FormFormType" FromRole="Form" ToRole="FormType" />
-          <NavigationProperty Name="FormField" Relationship="wqwz.FormFieldForm" FromRole="Form" ToRole="FormField" />
-          <Property Name="FormFieldId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FormType" Relationship="wqwz.FormTypeForm" FromRole="Form" ToRole="FormType" />
+          <Property Name="FormTypeId" Type="Int32" Nullable="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <NavigationProperty Name="FormFields" Relationship="wqwz.FormFormField" FromRole="Form" ToRole="FormField" />
         </EntityType>
         <EntityType Name="FormType">
           <Key>
@@ -293,8 +314,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <NavigationProperty Name="Forms" Relationship="wqwz.FormFormType" FromRole="FormType" ToRole="Form" />
-          <Property Name="FormId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Forms" Relationship="wqwz.FormTypeForm" FromRole="FormType" ToRole="Form" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -304,7 +324,7 @@
           <Property Name="Type" Type="wqwz.UserType" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Pwd" Type="String" Nullable="false" />
-          <Property Name="Sex" Type="wqwz.Sex" Nullable="false" />
+          <Property Name="Sex" Type="wqwz.SexType" Nullable="false" />
           <Property Name="RegDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Forms" Relationship="wqwz.UserForm" FromRole="User" ToRole="Form" />
           <NavigationProperty Name="News" Relationship="wqwz.NewsUser" FromRole="User" ToRole="News" />
@@ -316,23 +336,23 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Name="FormId" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Form" Relationship="wqwz.FormFieldForm" FromRole="FormField" ToRole="Form" />
-          <NavigationProperty Name="FormData" Relationship="wqwz.FormDataFormField" FromRole="FormField" ToRole="FormData" />
-          <Property Name="FormDataId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="FormFieldEnums" Relationship="wqwz.FormFieldEnumFormField" FromRole="FormField" ToRole="FormFieldEnum" />
+          <Property Name="Type" Type="wqwz.FormFieldType" Nullable="false" />
+          <NavigationProperty Name="Form" Relationship="wqwz.FormFormField" FromRole="FormField" ToRole="Form" />
+          <Property Name="FormId" Type="Int32" Nullable="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <NavigationProperty Name="FormDatas" Relationship="wqwz.FormFieldFormData" FromRole="FormField" ToRole="FormData" />
+          <Property Name="Regex" Type="String" Nullable="true" />
+          <NavigationProperty Name="FormFieldEnum" Relationship="wqwz.FormFieldFormFieldEnum" FromRole="FormField" ToRole="FormFieldEnum" />
         </EntityType>
         <EntityType Name="FormData">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Name="FormFieldId" Type="Int32" Nullable="false" />
           <Property Name="PostUserId" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="FormFields" Relationship="wqwz.FormDataFormField" FromRole="FormData" ToRole="FormField" />
           <NavigationProperty Name="User" Relationship="wqwz.FormDataUser" FromRole="FormData" ToRole="User" />
+          <NavigationProperty Name="FormField" Relationship="wqwz.FormFieldFormData" FromRole="FormData" ToRole="FormField" />
+          <Property Name="FormFieldId" Type="Int32" Nullable="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
         </EntityType>
         <Association Name="NewsNewsType">
           <End Type="wqwz.News" Role="News" Multiplicity="1" />
@@ -358,42 +378,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FormFormType">
-          <End Type="wqwz.Form" Role="Form" Multiplicity="1" />
-          <End Type="wqwz.FormType" Role="FormType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Form">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="FormType">
-              <PropertyRef Name="FormId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FormFieldForm">
-          <End Type="wqwz.FormField" Role="FormField" Multiplicity="1" />
-          <End Type="wqwz.Form" Role="Form" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormField">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Form">
-              <PropertyRef Name="FormFieldId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FormDataFormField">
-          <End Type="wqwz.FormData" Role="FormData" Multiplicity="1" />
-          <End Type="wqwz.FormField" Role="FormField" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormData">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="FormField">
-              <PropertyRef Name="FormDataId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="NewsUser">
           <End Type="wqwz.News" Role="News" Multiplicity="*" />
           <End Type="wqwz.User" Role="User" Multiplicity="1" />
@@ -402,7 +386,7 @@
           <End Type="wqwz.FormData" Role="FormData" Multiplicity="*" />
           <End Type="wqwz.User" Role="User" Multiplicity="1" />
         </Association>
-        <EnumType Name="Sex">
+        <EnumType Name="SexType">
           <Member Name="Male" />
           <Member Name="Female" />
           <Member Name="Secert" />
@@ -419,13 +403,67 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="Value" Type="String" Nullable="false" />
-          <Property Name="FormFieldId" Type="String" Nullable="false" />
-          <NavigationProperty Name="FormField" Relationship="wqwz.FormFieldEnumFormField" FromRole="FormFieldEnum" ToRole="FormField" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FormField" Relationship="wqwz.FormFieldFormFieldEnum" FromRole="FormFieldEnum" ToRole="FormField" />
+          <Property Name="FormFieldId" Type="Int32" Nullable="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
         </EntityType>
-        <Association Name="FormFieldEnumFormField">
-          <End Type="wqwz.FormFieldEnum" Role="FormFieldEnum" Multiplicity="*" />
+        <Association Name="FormTypeForm">
+          <End Type="wqwz.FormType" Role="FormType" Multiplicity="1" />
+          <End Type="wqwz.Form" Role="Form" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Form">
+              <PropertyRef Name="FormTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FormFormField">
+          <End Type="wqwz.Form" Role="Form" Multiplicity="1" />
+          <End Type="wqwz.FormField" Role="FormField" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Form">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FormField">
+              <PropertyRef Name="FormId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FormFieldFormData">
           <End Type="wqwz.FormField" Role="FormField" Multiplicity="1" />
+          <End Type="wqwz.FormData" Role="FormData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormField">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FormData">
+              <PropertyRef Name="FormFieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="FormFieldType">
+          <Member Name="Text" />
+          <Member Name="Date" />
+          <Member Name="Number" />
+          <Member Name="Regex" />
+          <Member Name="TextArea" />
+          <Member Name="EnumRadio" />
+          <Member Name="EnumCheck" />
+          <Member Name="EnumSelect" />
+        </EnumType>
+        <Association Name="FormFieldFormFieldEnum">
+          <End Type="wqwz.FormField" Role="FormField" Multiplicity="1" />
+          <End Type="wqwz.FormFieldEnum" Role="FormFieldEnum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormField">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FormFieldEnum">
+              <PropertyRef Name="FormFieldId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -462,12 +500,10 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
-          <ScalarProperty Name="ReleaseUserId" ColumnName="ReleaseUserId" />
           <ScalarProperty Name="Pass" ColumnName="Pass" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="FormFieldId" ColumnName="FormFieldId" />
+          <ScalarProperty Name="FormTypeId" ColumnName="FormTypeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -476,7 +512,6 @@
         <MappingFragment StoreEntitySet="FormTypeSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="FormId" ColumnName="FormId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -497,9 +532,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(wqwz.FormField)">
         <MappingFragment StoreEntitySet="FormFieldSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="FormId" ColumnName="FormId" />
           <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="FormDataId" ColumnName="FormDataId" />
+          <ScalarProperty Name="FormId" ColumnName="FormId" />
+          <ScalarProperty Name="Regex" ColumnName="Regex" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -507,9 +542,19 @@
       <EntityTypeMapping TypeName="IsTypeOf(wqwz.FormData)">
         <MappingFragment StoreEntitySet="FormDataSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="FormFieldId" ColumnName="FormFieldId" />
           <ScalarProperty Name="PostUserId" ColumnName="PostUserId" />
           <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="FormFieldId" ColumnName="FormFieldId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FormFieldEnumSet">
+      <EntityTypeMapping TypeName="IsTypeOf(wqwz.FormFieldEnum)">
+        <MappingFragment StoreEntitySet="FormFieldEnumSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="FormFieldId" ColumnName="FormFieldId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

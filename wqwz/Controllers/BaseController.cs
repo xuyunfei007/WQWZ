@@ -8,8 +8,14 @@ using wqwz.Services;
 
 namespace wqwz.Controllers
 {
-    public abstract class BaseController<TModel> : Controller
+    public abstract class BaseController<TModel> : Controller where TModel:class
     {
+        public BaseService<TModel> Service { get; set; }
+        public BaseController()
+        {
+            Service = new BaseService<TModel>();
+        }
+
         internal void SetSessionUser(int ID)
         {
             Session["UserID"] = ID;
@@ -24,29 +30,56 @@ namespace wqwz.Controllers
             var service = new BaseService<User>();
             return service.Find(ID);
         }
+        private ActionResult AjaxAndCommonResult()
+        {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView();
+            }
+            else
+            {
+                return View();
+            }
+        }
+        private ActionResult AjaxAndCommonResult(TModel entity)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(entity);
+            }
+            else
+            {
+                return View(entity);
+            }
+        }
+
 
         public virtual ActionResult Add()
         {
-            return View();
+            return AjaxAndCommonResult();
         }
+        
         [HttpPost]
         public virtual ActionResult Add(TModel entity)
         {
-            return View();
+            Service.Add(entity);
+            return AjaxAndCommonResult();
         }
-        public virtual ActionResult Find()
+        public virtual ActionResult Find(int id)
         {
-            return View();
+            return AjaxAndCommonResult(Service.Find(id));
         }
         [HttpPost]
         public virtual ActionResult Remove(TModel entity)
         {
-            return View();
+            Service.Remove(entity);
+            return AjaxAndCommonResult();
         }
         [HttpPost]
         public virtual ActionResult Update(TModel entity)
         {
-            return View();
+            Service.Update(entity);
+            return AjaxAndCommonResult();
         }
     }
 }

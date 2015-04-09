@@ -1,20 +1,21 @@
 ﻿@model wqwz.Models.User
 
-<div class="container">
-    <div class="row">
-        <div class="span12">
-            @*这里是使用了第三方库*@
-            @using (var f = Html.Bootstrap().Begin(new Form().Type(FormType.Horizontal)))//新建一个form
-            {
-                @f.ControlGroup().TextBoxFor(m=>m.Email)
-                @f.ControlGroup().TextBoxFor(m => m.Name)//用户名的文本框
-                @f.ControlGroup().PasswordFor(m => m.Pwd)//密码
-                @(f.ControlGroup().CustomControls(
-                    Html.Bootstrap().RadioButtonsFromEnumFor(m=>m.Sex),//性别的选择框
-                    Html.Bootstrap().SubmitButton()//提交按钮
-                    )
-                )
-            }
-        </div>
-    </div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Email, new { Class = "form-control" })
 </div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Name)
+    @Html.TextBoxFor(m => m.Name, new { Class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Pwd)
+    @Html.TextBoxFor(m => m.Pwd, new { Class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Sex)
+    男
+    @Html.RadioButtonFor(m => m.Sex, wqwz.Models.Sex.Male)
+    女
+    @Html.RadioButtonFor(m => m.Sex, wqwz.Models.Sex.Female)
+</div> 

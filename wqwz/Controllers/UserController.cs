@@ -7,32 +7,25 @@ using wqwz.Models;
 
 namespace wqwz.Controllers
 {
-    public class UserController : BaseController<User>
-    {
-        public wqwz.Services.BaseService<User> UserService { get; set; } 
-
-        public UserController()
-        {
-            UserService = new Services.BaseService<User>();
-        }
-
+    public partial class UserController : BaseController<User>
+    { 
         public override ActionResult Add(User entity)
         {
             entity.RegDate = DateTime.Now;
             entity.Type = UserType.User;
-            UserService.Add(entity);
+            Service.Add(entity);
             return Content("添加成功");
         }
 
-        public ActionResult _Login()
+        public virtual ActionResult _Login()
         {
             return PartialView();
         }
 
         [HttpPost]
-        public ActionResult _Login(User entity)
+        public virtual ActionResult _Login(User entity)
         {
-            var user = UserService.DbSet.Where(m => m.Pwd == entity.Pwd && (entity.Name == m.Name || entity.Email == m.Email));
+            var user = Service.DbSet.Where(m => m.Pwd == entity.Pwd && (entity.Name == m.Name || entity.Email == m.Email));
             if (user.Count()==1)
             {
                 //成功

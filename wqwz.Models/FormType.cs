@@ -14,10 +14,14 @@ namespace wqwz.Models
     
     public partial class FormType
     {
+        public FormType()
+        {
+            this.Forms = new HashSet<Form>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
-        public int FormId { get; set; }
     
-        public virtual Form Forms { get; set; }
+        public virtual ICollection<Form> Forms { get; set; }
     }
 }
