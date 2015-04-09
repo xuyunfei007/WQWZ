@@ -32,5 +32,6 @@ namespace wqwz.Models
         public virtual DbSet<User> UserSet { get; set; }
         public virtual DbSet<FormField> FormFieldSet { get; set; }
         public virtual DbSet<FormData> FormDataSet { get; set; }
+        public virtual DbSet<FormFieldEnum> FormFieldEnumSet { get; set; }
     }
 }

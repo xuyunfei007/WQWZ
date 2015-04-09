@@ -241,6 +241,11 @@
             <End Role="FormData" EntitySet="FormDataSet" />
             <End Role="User" EntitySet="UserSet" />
           </AssociationSet>
+          <EntitySet Name="FormFieldEnumSet" EntityType="wqwz.FormFieldEnum" />
+          <AssociationSet Name="FormFieldEnumFormField" Association="wqwz.FormFieldEnumFormField">
+            <End Role="FormFieldEnum" EntitySet="FormFieldEnumSet" />
+            <End Role="FormField" EntitySet="FormFieldSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="News">
           <Key>
@@ -316,6 +321,7 @@
           <NavigationProperty Name="Form" Relationship="wqwz.FormFieldForm" FromRole="FormField" ToRole="Form" />
           <NavigationProperty Name="FormData" Relationship="wqwz.FormDataFormField" FromRole="FormField" ToRole="FormData" />
           <Property Name="FormDataId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FormFieldEnums" Relationship="wqwz.FormFieldEnumFormField" FromRole="FormField" ToRole="FormFieldEnum" />
         </EntityType>
         <EntityType Name="FormData">
           <Key>
@@ -407,6 +413,20 @@
           <Member Name="User" />
           <Member Name="AdvanceUser" />
         </EnumType>
+        <EntityType Name="FormFieldEnum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" />
+          <Property Name="FormFieldId" Type="String" Nullable="false" />
+          <NavigationProperty Name="FormField" Relationship="wqwz.FormFieldEnumFormField" FromRole="FormFieldEnum" ToRole="FormField" />
+        </EntityType>
+        <Association Name="FormFieldEnumFormField">
+          <End Type="wqwz.FormFieldEnum" Role="FormFieldEnum" Multiplicity="*" />
+          <End Type="wqwz.FormField" Role="FormField" Multiplicity="1" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

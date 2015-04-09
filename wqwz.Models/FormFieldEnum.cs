@@ -12,21 +12,13 @@ namespace wqwz.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class FormField
+    public partial class FormFieldEnum
     {
-        public FormField()
-        {
-            this.Form = new HashSet<Form>();
-            this.FormFieldEnums = new HashSet<FormFieldEnum>();
-        }
-    
         public int Id { get; set; }
-        public int FormId { get; set; }
-        public int Type { get; set; }
-        public int FormDataId { get; set; }
+        public string Name { get; set; }
+        public string Value { get; set; }
+        public string FormFieldId { get; set; }
     
-        public virtual ICollection<Form> Form { get; set; }
-        public virtual FormData FormData { get; set; }
-        public virtual ICollection<FormFieldEnum> FormFieldEnums { get; set; }
+        public virtual FormField FormField { get; set; }
     }
 }

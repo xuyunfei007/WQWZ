@@ -9,7 +9,7 @@ namespace wqwz.Controllers
 {
     public class UserController : BaseController<User>
     {
-        public wqwz.Services.BaseService<User> UserService { get; set; }
+        public wqwz.Services.BaseService<User> UserService { get; set; } 
 
         public UserController()
         {
@@ -21,7 +21,7 @@ namespace wqwz.Controllers
             entity.RegDate = DateTime.Now;
             entity.Type = UserType.User;
             UserService.Add(entity);
-            return View("Success");
+            return Content("添加成功");
         }
 
         public ActionResult _Login()
@@ -37,7 +37,7 @@ namespace wqwz.Controllers
             {
                 //成功
                 SetSessionUser(user.ToList()[0].Id);
-                return PartialView("Success");
+                return Content("Success");
             }
             else
             {

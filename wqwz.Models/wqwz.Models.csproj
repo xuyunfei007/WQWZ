@@ -56,6 +56,9 @@
     <Compile Include="FormField.cs">
       <DependentUpon>wqwz.tt</DependentUpon>
     </Compile>
+    <Compile Include="FormFieldEnum.cs">
+      <DependentUpon>wqwz.tt</DependentUpon>
+    </Compile>
     <Compile Include="FormType.cs">
       <DependentUpon>wqwz.tt</DependentUpon>
     </Compile>
