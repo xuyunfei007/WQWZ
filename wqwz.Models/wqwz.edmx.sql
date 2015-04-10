@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/09/2015 16:35:40
+-- Date Created: 04/10/2015 08:35:38
 -- Generated from EDMX file: D:\Documents\GitHub\WQWZ\wqwz.Models\wqwz.edmx
 -- --------------------------------------------------
 
@@ -29,9 +29,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_FormDataUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[FormDataSet] DROP CONSTRAINT [FK_FormDataUser];
 GO
-IF OBJECT_ID(N'[dbo].[FK_FormFieldEnumFormField]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FormFieldEnumSet] DROP CONSTRAINT [FK_FormFieldEnumFormField];
-GO
 IF OBJECT_ID(N'[dbo].[FK_FormTypeForm]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[FormSet] DROP CONSTRAINT [FK_FormTypeForm];
 GO
@@ -40,6 +37,9 @@ IF OBJECT_ID(N'[dbo].[FK_FormFormField]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_FormFieldFormData]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[FormDataSet] DROP CONSTRAINT [FK_FormFieldFormData];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FormFieldFormFieldEnum]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FormFieldEnumSet] DROP CONSTRAINT [FK_FormFieldFormFieldEnum];
 GO
 
 -- --------------------------------------------------
@@ -81,9 +81,9 @@ CREATE TABLE [dbo].[NewsSet] (
     [Title] nvarchar(max)  NOT NULL,
     [ReleaseDate] datetime  NOT NULL,
     [ReleaseUserId] int  NOT NULL,
-    [Pass] bit  NOT NULL,
     [Type] int  NOT NULL,
     [Content] nvarchar(max)  NOT NULL,
+    [Status] int  NOT NULL,
     [User_Id] int  NOT NULL
 );
 GO
@@ -101,7 +101,7 @@ CREATE TABLE [dbo].[FormSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Title] nvarchar(max)  NOT NULL,
     [ReleaseDate] datetime  NOT NULL,
-    [Pass] bit  NOT NULL,
+    [Status] int  NOT NULL,
     [Content] nvarchar(max)  NOT NULL,
     [UserId] int  NOT NULL,
     [FormTypeId] int  NOT NULL
@@ -132,7 +132,8 @@ CREATE TABLE [dbo].[FormFieldSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Type] int  NOT NULL,
     [FormId] int  NOT NULL,
-    [Regex] nvarchar(max)  NULL
+    [Regex] nvarchar(max)  NULL,
+    [Name] nvarchar(max)  NOT NULL
 );
 GO
 

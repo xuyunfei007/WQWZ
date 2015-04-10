@@ -56,9 +56,9 @@
     <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ReleaseDate" Type="datetime" Nullable="false" />
     <Property Name="ReleaseUserId" Type="int" Nullable="false" />
-    <Property Name="Pass" Type="bit" Nullable="false" />
     <Property Name="Type" Type="int" Nullable="false" />
     <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="NewsTypeSet">
@@ -76,7 +76,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ReleaseDate" Type="datetime" Nullable="false" />
-    <Property Name="Pass" Type="bit" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
     <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="FormTypeId" Type="int" Nullable="false" />
@@ -108,6 +108,7 @@
     <Property Name="Type" Type="int" Nullable="false" />
     <Property Name="FormId" Type="int" Nullable="false" />
     <Property Name="Regex" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="FormDataSet">
     <Key>
@@ -487,6 +488,7 @@
           <ScalarProperty Name="ReleaseUserId" ColumnName="ReleaseUserId" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -505,7 +507,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
-          <ScalarProperty Name="Status" ColumnName="Pass" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="FormTypeId" ColumnName="FormTypeId" />
@@ -540,6 +542,7 @@
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="FormId" ColumnName="FormId" />
           <ScalarProperty Name="Regex" ColumnName="Regex" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
