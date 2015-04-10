@@ -2,9 +2,11 @@ namespace wqwz.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     [Table("UserSet")]
     public partial class User
@@ -14,24 +16,39 @@ namespace wqwz.Models
             FormDatas = new HashSet<FormData>();
             Forms = new HashSet<Form>();
             News = new HashSet<News>();
+            RegDate = DateTime.Now;
         }
 
+        [ReadOnly(true)]
+        [HiddenInput(DisplayValue=false)] 
         public int Id { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
+        [Display(Name = "用户类型", Order = 5)] 
         public UserType Type { get; set; }
 
         [Required]
+        [Display(Name = "用户名",Order=1)]
+        [DataType(DataType.Text)]
         public string Name { get; set; }
 
         [Required]
-        public string Pwd { get; set; }
-
-        public SexType Sex { get; set; }
-
-        public DateTime RegDate { get; set; }
+        [Display(Name = "邮箱", Order = 1)]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
 
         [Required]
-        public string Email { get; set; }
+        [Display(Name = "密码",Order=3)] 
+        [DataType(DataType.Password)]
+        public string Pwd { get; set; }
+
+        [Display(Name="性别")]  
+        public SexType Sex { get; set; }
+
+        [ReadOnly(true)]
+        [HiddenInput(DisplayValue = false)]
+        [Display(Name = "注册时间", Order = 4)] 
+        public DateTime RegDate { get; set; }
 
         public virtual ICollection<FormData> FormDatas { get; set; }
 

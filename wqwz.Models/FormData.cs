@@ -9,9 +9,13 @@ namespace wqwz.Models
     [Table("FormDataSet")]
     public partial class FormData
     {
+        public FormData()
+        {
+            PostDate = DateTime.Now;
+        }
         public int Id { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime PostDate { get; set; }
 
         public int FormFieldId { get; set; }
 

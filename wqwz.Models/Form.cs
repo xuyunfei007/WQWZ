@@ -12,6 +12,7 @@ namespace wqwz.Models
         public Form()
         {
             FormFields = new HashSet<FormField>();
+            ReleaseDate = DateTime.Now;
         }
 
         public int Id { get; set; }

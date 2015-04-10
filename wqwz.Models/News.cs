@@ -9,6 +9,10 @@ namespace wqwz.Models
     [Table("NewsSet")]
     public partial class News
     {
+        public News()
+        {
+            ReleaseDate = DateTime.Now;
+        }
         public int Id { get; set; }
 
         [Required]

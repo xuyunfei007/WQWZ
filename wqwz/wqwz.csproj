@@ -294,6 +294,8 @@
     <Content Include="Views\User\_Login.cshtml" />
     <Content Include="Views\Form\Find.cshtml" />
     <Content Include="Views\User\Add.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TextBox.cshtml" />
+    <Content Include="Views\Home\SingleItem1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
