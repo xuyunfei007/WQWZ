@@ -10,7 +10,7 @@ namespace wqwz.Services
         private static wqwz.Models.wqwzContainer instance;
         public static wqwz.Models.wqwzContainer GetContainerInstance()
         {
-            if (instance==null)
+            if (instance == null)
             {
                 instance = new Models.wqwzContainer();
             }

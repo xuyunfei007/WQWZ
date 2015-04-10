@@ -46,84 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form.cs">
-      <DependentUpon>wqwz.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FormData.cs">
-      <DependentUpon>wqwz.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FormField.cs">
-      <DependentUpon>wqwz.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FormFieldEnum.cs">
-      <DependentUpon>wqwz.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FormFieldType.cs">
-      <DependentUpon>wqwz.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FormType.cs">
-      <DependentUpon>wqwz.tt</DependentUpon>
-    </Compile>
-    <Compile Include="News.cs">
-      <DependentUpon>wqwz.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewsType.cs">
-      <DependentUpon>wqwz.tt</DependentUpon>
-    </Compile>
+    <Compile Include="FormFieldType.cs" />
+    <Compile Include="SexType.cs" />
+    <Compile Include="StatusType.cs" />
+    <Compile Include="UserType.cs" />
+    <Compile Include="FormData.cs" />
+    <Compile Include="FormFieldEnum.cs" />
+    <Compile Include="FormField.cs" />
+    <Compile Include="Form.cs" />
+    <Compile Include="FormType.cs" />
+    <Compile Include="News.cs" />
+    <Compile Include="NewsType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SexType.cs">
-      <DependentUpon>wqwz.tt</DependentUpon>
-    </Compile>
-    <Compile Include="StatusType.cs">
-      <DependentUpon>wqwz.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>wqwz.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserType.cs">
-      <DependentUpon>wqwz.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wqwz.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>wqwz.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wqwz.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>wqwz.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wqwz.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>wqwz.edmx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="wqwz.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>wqwz.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Compile Include="User.cs" />
+    <Compile Include="wqwzContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <None Include="wqwz.edmx.diagram">
-      <DependentUpon>wqwz.edmx</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="wqwz.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>wqwz.Context.cs</LastGenOutput>
-      <DependentUpon>wqwz.edmx</DependentUpon>
-    </Content>
-    <Content Include="wqwz.edmx.sql" />
-    <Content Include="wqwz.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>wqwz.cs</LastGenOutput>
-      <DependentUpon>wqwz.edmx</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
