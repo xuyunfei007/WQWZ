@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\User.cs" />
     <Compile Include="Form.cs">
       <DependentUpon>wqwz.tt</DependentUpon>
     </Compile>
