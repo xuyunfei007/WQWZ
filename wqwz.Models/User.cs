@@ -30,11 +30,12 @@ namespace wqwz.Models
         [Required]
         [Display(Name = "用户名",Order=1)]
         [DataType(DataType.Text)]
+        [StringLength(10,MinimumLength=4)]
         public string Name { get; set; }
 
         [Required]
         [Display(Name = "邮箱", Order = 1)]
-        [DataType(DataType.EmailAddress)]
+        [DataType(DataType.EmailAddress, ErrorMessage = "请输入正确的电子信箱")]
         public string Email { get; set; }
 
         [Required]
@@ -43,6 +44,7 @@ namespace wqwz.Models
         public string Pwd { get; set; }
 
         [Display(Name="性别")]  
+        [UIHint("Enum")]
         public SexType Sex { get; set; }
 
         [ReadOnly(true)]

@@ -1,22 +1,15 @@
 ﻿@model wqwz.Models.User
+ 
 
-@Html.EditorForModel()
-
-
-<div class="form-group">
-    @Html.LabelFor(model => model.Name)
+<form>
     @Html.EditorFor(model => model.Name)
-    @Html.ValidationMessageFor(model => model.Name)
-</div> 
-
-<div class="form-group">
-    @Html.LabelFor(model => model.Email)
-    @Html.EditorFor(model => model.Email)
-    @Html.ValidationMessageFor(model => model.Email)
-</div> 
-
-<div class="form-group">
-    @Html.LabelFor(model => model.Pwd)
+    @Html.EditorFor(model => model.Email) 
     @Html.EditorFor(model => model.Pwd)
-    @Html.ValidationMessageFor(model => model.Pwd)
-</div> 
+    @Html.EditorFor(model => model.Sex)
+    <button type="submit">sad</button>
+</form>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/val")
+    @Scripts.Render("~/Scripts/md")
+}
