@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
@@ -9,7 +10,7 @@ using wqwz.Services;
 namespace wqwz.Controllers
 {
     public abstract class BaseController<TModel> : Controller where TModel:class
-    {
+    { 
         public BaseService<TModel> Service { get; set; }
         public BaseController()
         {

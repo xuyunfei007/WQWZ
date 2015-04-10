@@ -9,13 +9,10 @@ namespace wqwz.Controllers
 {
     public partial class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
         public virtual ActionResult Index()
         {
             var container = new wqwz.Models.wqwzContainer();
-            var user = container.UserSet.Find(1);
+            var user = container.UserSet.Find(7);
             return View();
         }
 
@@ -23,30 +20,43 @@ namespace wqwz.Controllers
         {
             return PartialView();
         }
+        public void DeleteAllData()
+        {
+            var container = new wqwz.Models.wqwzContainer();
+            foreach (var property in typeof(wqwzContainer).GetProperties().Where(property=>property.Name.EndsWith("Set")))
+            {
+                dynamic obj = property.GetValue(container, null); 
+                obj.RemoveRange(obj); 
+            }
+            container.SaveChanges();
+        }
+
         public virtual ActionResult AddTestData()
         {
             var container = new wqwz.Models.wqwzContainer();
-            var user = new User() {  Email="123456@qq.com",Name="张三",Pwd="123456",RegDate = DateTime.Now, Sex= SexType.Male};
-            var userid = container.UserSet.Add(user).Id;
+            var user = new User() { Email = "123456@qq.com", Name = "张三", Pwd = "123456", RegDate = DateTime.Now, Sex = SexType.Male };
+            container.UserSet.Add(user);
+            FormType type = null;
             for (int i = 0; i < 2; i++)
             {
-                var type = new FormType() { Name = "表单类型"+i.ToString() };
+                type = new FormType() { Name = "表单类型" + i.ToString() };
                 container.FormTypeSet.Add(type);
-            } 
-            var form = new Form() {  UserId = userid,Content="",Pass=true,ReleaseDate = DateTime.Now,Title = "表单1", FormTypeId = 1 };
+            }
+            container.SaveChanges();
+            var form = new Form() { UserId = user.Id, Content = "什么什么什么", Status = StatusType.Unhandled, ReleaseDate = DateTime.Now, Title = "表单1", FormTypeId = type.Id };
             container.FormSet.Add(form);
-            container.SaveChanges();  
-            var formfield = new FormField() { FormId = 1, Type = FormFieldType.Text };
-            var formfield2 = new FormField() { FormId = 1, Type = FormFieldType.EnumSelect }; 
+            container.SaveChanges();
+            var formfield = new FormField() { FormId = form.Id, Type = FormFieldType.EnumSelect, Name = "班级" };
+            var formfield2 = new FormField() { FormId = form.Id, Type = FormFieldType.Text, Name = "姓名" };
             container.FormFieldSet.Add(formfield);
-            var enumformfieldid = container.FormFieldSet.Add(formfield2);
+            container.FormFieldSet.Add(formfield2);
             for (int i = 0; i < 3; i++)
             {
-                var formfieldenum = new FormFieldEnum() { FormField = enumformfieldid, Name = i.ToString(),Value = i };
+                var formfieldenum = new FormFieldEnum() { FormField = formfield, Name = i.ToString(), Value = i };
                 container.FormFieldEnumSet.Add(formfieldenum);
             }
-            container.SaveChanges(); 
-            return Content("1"); 
+            container.SaveChanges();
+            return Content(user.Id.ToString());
         }
     }
 }

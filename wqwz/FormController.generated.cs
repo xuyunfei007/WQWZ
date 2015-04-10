@@ -147,7 +147,9 @@ namespace wqwz.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Find = "Find";
             }
+            public readonly string Find = "~/Views/Form/Find.cshtml";
         }
     }
 
@@ -169,17 +171,6 @@ namespace wqwz.Controllers
         }
 
         [NonAction]
-        partial void AddOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Add()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Add);
-            AddOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
         partial void FindOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
         [NonAction]
@@ -188,6 +179,17 @@ namespace wqwz.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Find);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             FindOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void AddOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Add()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Add);
+            AddOverride(callInfo);
             return callInfo;
         }
 

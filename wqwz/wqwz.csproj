@@ -53,6 +53,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -287,12 +288,12 @@
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\User\Add.cshtml" />
     <Content Include="Views\User\Success.cshtml" />
     <Content Include="Views\Home\_NavBar.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\_Login.cshtml" />
     <Content Include="Views\Form\Find.cshtml" />
+    <Content Include="Views\User\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
