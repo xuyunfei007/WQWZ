@@ -21,6 +21,8 @@ namespace wqwz.Models
 
         public int PostUserId { get; set; }
 
+        public string PostData { get; set; }
+
         public virtual FormField FormFields { get; set; }
 
         public virtual User PostUser { get; set; }

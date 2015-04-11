@@ -2,37 +2,46 @@
 
 @Model.Title
 @Model.ReleaseDate
-
-@foreach (var field in Model.FormFields)
-{
-    @field.Id
-    switch (field.Type)
+<form method="post" action="/FormData/AddArray">
+    @foreach (var field in Model.FormFields)
     {
-        case wqwz.Models.FormFieldType.Text:
-            <input name="field@field.Id" />
-            break;
-        case wqwz.Models.FormFieldType.Date:
-            break;
-        case wqwz.Models.FormFieldType.Number:
-            break;
-        case wqwz.Models.FormFieldType.Regex:
-            break;
-        case wqwz.Models.FormFieldType.TextArea:
-            break;
-        case wqwz.Models.FormFieldType.EnumRadio:
-            break;
-        case wqwz.Models.FormFieldType.EnumCheck:
-            break;
-        case wqwz.Models.FormFieldType.EnumSelect:
-        <select name="field@field.Id">
-            @foreach (var fieldEnum in field.FormFieldEnum)
-            {
-                <option value="@fieldEnum.Value">@fieldEnum.Name</option>
-            }
-        </select>
-            break;
-        default:
-            break;
+        <input name="FormFieldId" value="@field.Id" type="hidden" />
+        switch (field.Type)
+        {
+            case wqwz.Models.FormFieldType.Text:
+                <div class="form-group">
+                    <label class="control-label" for="field:@field.Id">@field.Name</label>
+                    <input type="text" name="PostData" class="form-control" id="field:@field.Id" placeholder="@field.Name">
+                </div>
+                break;
+            case wqwz.Models.FormFieldType.Date:
+                break;
+            case wqwz.Models.FormFieldType.Number:
+                break;
+            case wqwz.Models.FormFieldType.Regex:
+                break;
+            case wqwz.Models.FormFieldType.TextArea:
+                break;
+            case wqwz.Models.FormFieldType.EnumRadio:
+                break;
+            case wqwz.Models.FormFieldType.EnumCheck:
+                break;
+            case wqwz.Models.FormFieldType.EnumSelect:
+            <div class="form-group">
+                <label class="control-label" for="field:@field.Id">@field.Name</label>
+                <select name="PostData" id="field:@field.Id" class="form-control">
+                    @foreach (var fieldEnum in field.FormFieldEnums)
+                    {
+                        <option value="@fieldEnum.Value">@fieldEnum.Name</option>
+                    }
+                </select>
+            </div>
+
+                    break;
+            default:
+                    break;
+        }
     }
-}
+    <button class="btn btn-primary">提交</button>
+</form>
 @Model.Content

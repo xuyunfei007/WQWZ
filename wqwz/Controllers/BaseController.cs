@@ -14,6 +14,11 @@ namespace wqwz.Controllers
         public BaseService<TModel> Service { get; set; }
         public BaseController()
         {
+#if DEBUG
+            //TODO 待删除的城市代码
+            //SetSessionUser(1);
+#endif
+
             Service = new BaseService<TModel>();
         }
 
@@ -31,6 +36,12 @@ namespace wqwz.Controllers
             var service = new BaseService<User>();
             return service.Find(ID);
         }
+        internal int GetSessionUserId()
+        {
+            return (int)Session["UserID"];
+        }
+        internal bool IsUserLogin { get { return  Session["UserID"] != null; } }
+
         private ActionResult AjaxAndCommonResult()
         {
             if (Request.IsAjaxRequest())

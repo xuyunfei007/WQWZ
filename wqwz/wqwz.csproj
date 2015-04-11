@@ -150,6 +150,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BootstrapEditorTemplatesController.cs" />
     <Compile Include="Controllers\FormController.cs" />
+    <Compile Include="Controllers\FormDataController.cs" />
     <Compile Include="Controllers\FormFieldController.cs" />
     <Compile Include="Controllers\FormFieldEnumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

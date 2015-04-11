@@ -34,7 +34,7 @@ namespace wqwz.Controllers
         public virtual ActionResult AddTestData()
         {
             var container = new wqwz.Models.wqwzContainer();
-            var user = new User() { Email = "123456@qq.com", Name = "张三", Pwd = "123456", RegDate = DateTime.Now, Sex = SexType.Male };
+            var user = new User() { Email = "123456@qq.com", Name = "john", Pwd = "123456", RegDate = DateTime.Now, Sex = SexType.Male };
             container.UserSet.Add(user);
             FormType type = null;
             for (int i = 0; i < 2; i++)
