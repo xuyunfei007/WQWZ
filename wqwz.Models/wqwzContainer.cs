@@ -27,7 +27,7 @@ namespace wqwz.Models
                 .HasMany(e => e.FormDatas)
                 .WithRequired(e => e.FormFields)
                 .HasForeignKey(e => e.FormFieldId)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(false); 
 
             modelBuilder.Entity<FormField>()
                 .HasMany(e => e.FormFieldEnums)
@@ -70,6 +70,8 @@ namespace wqwz.Models
                 .WithRequired(e => e.ReleaseUser)
                 .HasForeignKey(e => e.ReleaseUserId)
                 .WillCascadeOnDelete(false);
+
+
         }
     }
 }

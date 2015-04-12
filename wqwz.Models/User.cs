@@ -8,7 +8,7 @@ namespace wqwz.Models
     using System.Data.Entity.Spatial;
     using System.Web.Mvc;
 
-    [Table("UserSet")]
+    [Table("User")]
     public partial class User
     {
         public User()

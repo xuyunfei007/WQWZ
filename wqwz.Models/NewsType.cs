@@ -6,7 +6,7 @@ namespace wqwz.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("NewsTypeSet")]
+    [Table("NewsType")]
     public partial class NewsType
     {
         public NewsType()

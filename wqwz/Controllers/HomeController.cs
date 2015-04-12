@@ -11,8 +11,14 @@ namespace wqwz.Controllers
     {
         public virtual ActionResult Index()
         {
-            var container = new wqwz.Models.wqwzContainer();
-            var user = container.UserSet.Find(7);
+
+#if DEBUG
+            //TODO 待删除的代码
+            Session["UserID"] = 1;
+            //var container = new wqwz.Models.wqwzContainer();
+            //container.FormSet.Remove(container.FormSet.Find(1));
+            //container.SaveChanges();
+#endif
             return View();
         }
 

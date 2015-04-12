@@ -13,12 +13,7 @@ namespace wqwz.Controllers
     { 
         public BaseService<TModel> Service { get; set; }
         public BaseController()
-        {
-#if DEBUG
-            //TODO 待删除的城市代码
-            //SetSessionUser(1);
-#endif
-
+        { 
             Service = new BaseService<TModel>();
         }
 

@@ -6,7 +6,7 @@ namespace wqwz.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("FormFieldEnumSet")]
+    [Table("FormFieldEnum")]
     public partial class FormFieldEnum
     {
         public int Id { get; set; }

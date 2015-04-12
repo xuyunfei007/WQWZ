@@ -6,7 +6,7 @@ namespace wqwz.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("FormDataSet")]
+    [Table("FormData")]
     public partial class FormData
     {
         public FormData()
