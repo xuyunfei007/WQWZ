@@ -1,0 +1,42 @@
+这里用到了几个库
+https://github.com/MacawNL/BootstrapEditorTemplates
+（注意这个库并非非常全，有些东西需要自定义）
+1.模板技术
+Html.EditorFor这个表达式 会搜索项目中的模板文件。搜索不到会用默认的模板。
+比如User类
+Html.EditorFor(user=>user.Name)
+会渲染出
+<input name = "name" class="text single-line" />
+bootstrap中，并没有为此定义的css类。
+所以就用到了模板。
+在views/shared/EditorTemplates中放入对应的模板。就会渲染其中的内容。
+这样就会渲染出bootstrap样式的内容。
+要渲染出什么样式的内容，要在模型类中添加数据注解。
+1.指定DataType 比如指定 数据类型是PhoneNumber，就会渲染PhoneNumber。cshtml下的内容。
+2.或者使用UIHint扩展属性。 [UIHint("Enum")] 这句话为让这条属性渲染Enum.cshtml下的内容
+
+<form method="post">
+    @Html.EditorFor(model => model.Name)
+    @Html.EditorFor(model => model.Email)
+    @Html.EditorFor(model => model.Pwd)
+    @Html.EditorFor(model => model.Sex)
+    @Html.EditorFor(model => model.Status)
+    @Html.EditorFor(model => model.RealName)
+    @Html.EditorFor(model => model.OrganizationName)
+    @Html.EditorFor(model => model.PhoneNumber)
+    @Html.EditorFor(model => model.Public)
+    @Html.EditorFor(model => model.Info)
+    <button type="submit">提交</button>
+</form>
+
+这样就可以渲染出一个非常清晰的表单。 
+
+public override ActionResult Add(User entity)
+        {
+            entity.RegDate = DateTime.Now;
+            entity.Type = UserType.User;
+            Service.Add(entity);
+            return Content("添加成功");
+        }
+
+控制器中稍作修改就能添加进数据了。
