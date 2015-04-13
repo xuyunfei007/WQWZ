@@ -1,16 +1,27 @@
 ﻿@model wqwz.Models.User
  
-
-<form>
+<form method="post">
     @Html.EditorFor(model => model.Name)
-    @Html.EditorFor(model => model.Email) 
+    @Html.EditorFor(model => model.Email)
     @Html.EditorFor(model => model.Pwd)
     @Html.EditorFor(model => model.Sex)
-    @Html.TextBoxFor(model=>model.Name)
-    <button type="submit">sad</button>
+    @Html.EditorFor(model => model.Status)
+    @Html.EditorFor(model => model.RealName)
+    @Html.EditorFor(model => model.OrganizationName)
+    @Html.EditorFor(model => model.PhoneNumber)
+    @Html.EditorFor(model => model.Public)
+    @Html.EditorFor(model => model.Info)
+    <button type="submit">提交</button>
 </form>
 
 @section Scripts {
     @Scripts.Render("~/Scripts/val")
-    @Scripts.Render("~/Scripts/md")
+    @*@Scripts.Render("~/Scripts/md")*@
+    <script>
+        $(document).ready(function () {
+            $('#Info').summernote({
+                lang: 'zh-CN' // default: 'en-US'
+            });
+        });
+    </script>
 }

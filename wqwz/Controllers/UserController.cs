@@ -8,7 +8,8 @@ using wqwz.Models;
 namespace wqwz.Controllers
 {
     public partial class UserController : BaseController<User>
-    { 
+    {
+        [ValidateInput(false)]
         public override ActionResult Add(User entity)
         {
             entity.RegDate = DateTime.Now;

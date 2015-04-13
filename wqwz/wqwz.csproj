@@ -195,6 +195,7 @@
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\summernote\summernote.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -343,7 +344,6 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-timepicker.js" />
-    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\filebutton.js" />
     <Content Include="Scripts\globalize-datepicker.js" />
@@ -727,6 +727,8 @@
     <Content Include="Scripts\mdd_styles.css" />
     <Content Include="Scripts\mdd_toolbar.png" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\summernote\summernote-zh-CN.js" />
+    <Content Include="Scripts\summernote\summernote.min.js" />
     <Content Include="Scripts\validation.js" />
     <Content Include="Scripts\_references.js" />
     <None Include="T4MVC.tt">
@@ -775,6 +777,8 @@
     <Content Include="Views\Shared\EditorTemplates\TimeSpan.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
     <Content Include="Views\FormFieldEnum\Add.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Summernote.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\PhoneNumber.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

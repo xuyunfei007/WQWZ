@@ -47,6 +47,6 @@ namespace wqwz.Services
             var oldEntity = Find(id); 
             Container.Entry<TModel>(oldEntity).CurrentValues.SetValues(entity);
             return SaveChanges();
-        }
+        } 
     }
 }
