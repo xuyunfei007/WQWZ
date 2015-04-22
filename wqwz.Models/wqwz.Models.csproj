@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FormFieldType.cs" />
+    <Compile Include="FormTemplate.cs" />
     <Compile Include="SexType.cs" />
     <Compile Include="StatusType.cs" />
     <Compile Include="UserStatusType.cs" />

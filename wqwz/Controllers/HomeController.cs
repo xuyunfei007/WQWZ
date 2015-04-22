@@ -11,7 +11,7 @@ namespace wqwz.Controllers
     {
         public virtual ActionResult Index()
         {
-
+            var container = new wqwz.Models.wqwzContainer();
 #if DEBUG
             //TODO 待删除的代码
             Session["UserID"] = 1;
@@ -49,11 +49,17 @@ namespace wqwz.Controllers
                 container.FormTypeSet.Add(type);
             }
             container.SaveChanges();
-            var form = new Form() { UserId = user.Id, Content = "什么什么什么", Status = StatusType.Unhandled, ReleaseDate = DateTime.Now, Title = "表单1", FormTypeId = type.Id };
-            container.FormSet.Add(form);
+
+            var formtpl = new FormTemplate() { Name="班级" };
+            container.FormTemplateSet.Add(formtpl);
             container.SaveChanges();
-            var formfield = new FormField() { FormId = form.Id, Type = FormFieldType.EnumSelect, Name = "班级" };
-            var formfield2 = new FormField() { FormId = form.Id, Type = FormFieldType.Text, Name = "姓名" };
+
+            var form = new Form() { UserId = user.Id, Content = "什么什么什么", Status = StatusType.Unhandled, ReleaseDate = DateTime.Now, Title = "表单1", FormTypeId = type.Id, FormTemplateId = formtpl.Id};
+            container.FormSet.Add(form);
+
+            container.SaveChanges();
+            var formfield = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.EnumSelect, Name = "班级" };
+            var formfield2 = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.Text, Name = "姓名" };
             container.FormFieldSet.Add(formfield);
             container.FormFieldSet.Add(formfield2);
             for (int i = 0; i < 3; i++)

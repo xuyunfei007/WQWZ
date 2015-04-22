@@ -19,17 +19,18 @@ namespace wqwz.Models
 
         public FormFieldType Type { get; set; }
 
-        public int FormId { get; set; }
+        public int FormTemplateId { get; set; } 
 
         public string Regex { get; set; }
 
         [Required]
         public string Name { get; set; }
 
+        public virtual FormTemplate FormTemplate { get; set; } 
+
         public virtual ICollection<FormData> FormDatas { get; set; }
 
         public virtual ICollection<FormFieldEnum> FormFieldEnums { get; set; }
-
-        public virtual Form Form { get; set; }
+         
     }
 }

@@ -20,6 +20,7 @@ namespace wqwz.Models
         public virtual DbSet<News> NewsSet { get; set; }
         public virtual DbSet<NewsType> NewsTypeSet { get; set; }
         public virtual DbSet<User> UserSet { get; set; }
+        public virtual DbSet<FormTemplate> FormTemplateSet { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -33,13 +34,7 @@ namespace wqwz.Models
                 .HasMany(e => e.FormFieldEnums)
                 .WithRequired(e => e.FormField)
                 .HasForeignKey(e => e.FormFieldId)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Form>()
-                .HasMany(e => e.FormFields)
-                .WithRequired(e => e.Form)
-                .HasForeignKey(e => e.FormId)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(false); 
 
             modelBuilder.Entity<FormType>()
                 .HasMany(e => e.Forms)
@@ -71,7 +66,23 @@ namespace wqwz.Models
                 .HasForeignKey(e => e.ReleaseUserId)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<FormTemplate>()
+                .HasMany(e => e.Forms)
+                .WithRequired(e => e.FormTemplate)
+                .HasForeignKey(e => e.FormTemplateId)
+                .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<FormTemplate>()
+                .HasMany(e => e.FormFields)
+                .WithRequired(e => e.FormTemplate)
+                .HasForeignKey(e => e.FormTemplateId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Form>()
+                .HasMany(e => e.FormDatas)
+                .WithRequired(e => e.Form)
+                .HasForeignKey(e => e.FormId)
+                .WillCascadeOnDelete(false);
         }
     }
 }

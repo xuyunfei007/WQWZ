@@ -17,8 +17,10 @@ namespace wqwz.Models
         public int Id { get; set; }
 
         [Required]
+        [Display(Name="Ãû×Ö")]
+        [StringLength(20,MinimumLength=1)]
         public string Name { get; set; }
-
+        
         public virtual ICollection<Form> Forms { get; set; }
     }
 }
