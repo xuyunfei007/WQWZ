@@ -10,8 +10,7 @@ namespace wqwz.Models
     public partial class Form
     {
         public Form()
-        {
-            FormFields = new HashSet<FormField>();
+        { 
             ReleaseDate = DateTime.Now;
         }
 
@@ -30,11 +29,15 @@ namespace wqwz.Models
         public int UserId { get; set; }
 
         public int FormTypeId { get; set; }
-
-        public virtual ICollection<FormField> FormFields { get; set; }
+        public int FormTemplateId { get; set; }
+         
 
         public virtual FormType FormType { get; set; }
 
         public virtual User ReleaseUser { get; set; }
+
+        public virtual FormTemplate FormTemplate { get; set; }
+
+        public virtual ICollection<FormData> FormDatas { get; set; }
     }
 }

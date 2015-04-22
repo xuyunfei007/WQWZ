@@ -2,8 +2,10 @@
 
 @Model.Title
 @Model.ReleaseDate
+
 <form method="post" action="/FormData/AddArray">
-    @foreach (var field in Model.FormFields)
+    <input name="FormId" value="@Model.Id" type="hidden" />
+    @foreach (var field in Model.FormTemplate.FormFields)
     {
         <input name="FormFieldId" value="@field.Id" type="hidden" />
         switch (field.Type)
