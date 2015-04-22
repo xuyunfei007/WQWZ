@@ -39,6 +39,7 @@ namespace wqwz.Controllers
 
         public virtual ActionResult AddTestData()
         {
+            //TODO
             var container = new wqwz.Models.wqwzContainer();
             var user = new User() { Email = "123456@qq.com", Name = "john", Pwd = "123456", RegDate = DateTime.Now, Sex = SexType.Male };
             container.UserSet.Add(user);
