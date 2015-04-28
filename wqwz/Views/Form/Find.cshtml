@@ -1,5 +1,6 @@
-﻿@model wqwz.Models.Form
-
+﻿
+@using System.ComponentModel;
+@model wqwz.Models.Form
 @Model.Title
 @Model.ReleaseDate
 
@@ -8,42 +9,118 @@
     @foreach (var field in Model.FormTemplate.FormFields)
     {
         <input name="FormFieldId" value="@field.Id" type="hidden" />
-        switch (field.Type)
-        {
-            case wqwz.Models.FormFieldType.Text:
-                <div class="form-group">
-                    <label class="control-label" for="field:@field.Id">@field.Name</label>
+        <div class="form-group">
+            <label class="control-label" for="field:@field.Id">@field.Name</label>
+            @switch (field.Type)
+            {
+                case wqwz.Models.FormFieldType.Text:
                     <input type="text" name="PostData" class="form-control" id="field:@field.Id" placeholder="@field.Name">
+                    break;
+                case wqwz.Models.FormFieldType.Date:
+                <input class="form-control datepicker" data-date-format="yyyy/m/d"
+                       data-date-language="globalize" data-date-today-btn="false" data-date-today-highlight="true"
+                       data-provide="datepicker" data-val="true"
+                       id="DateValue" name="PostData" type="text">
+
+                    break;
+                case wqwz.Models.FormFieldType.Number:
+                    break;
+                case wqwz.Models.FormFieldType.Regex:
+                    break;
+                case wqwz.Models.FormFieldType.ELevel:
+                <select name="PostData" class="form-control">
+                    @{Type enumType = typeof(wqwz.Models.ELevel);
+                      // 获取枚举常数名称。
+                      string[] names = Enum.GetNames(enumType);
+                      
+                      int count=0;
+                      foreach (var name in names)
+                      {
+                    
+                          if (name != null)
+                          {
+                              // 获取枚举字段。
+                             System.Reflection.FieldInfo fieldInfo = enumType.GetField(name);
+                              if (fieldInfo != null)
+                              {
+                                  // 获取描述的属性。
+                                  DescriptionAttribute attr = Attribute.GetCustomAttribute(fieldInfo,
+                                      typeof(DescriptionAttribute), false) as DescriptionAttribute;
+                                  if (attr != null)
+                                  {
+                                      
+                                            <option value="@count"> @attr.Description</option>
+                                      count++;
+
+                                  }
+                              }
+                          }
+                      }
+
+}
+
+                    @foreach (var item in typeof(wqwz.Models.ELevel).GetFields())
+                    {
+                         DescriptionAttribute descAttr = Attribute.GetCustomAttribute(item, typeof(DescriptionAttribute)) as DescriptionAttribute;
+                        
+                        
+                       
+                    }
+                </select>
+                    break;
+                case wqwz.Models.FormFieldType.TextArea:
+                <textarea class="form-control input-block-level" cols="8" id="field:@field.Id" name="PostData" rows="8"></textarea>
+                    break;
+                case wqwz.Models.FormFieldType.EnumRadio:
+                <div>
+                    @foreach (var fieldEnum in field.FormFieldEnums)
+                    {
+
+                        <input data-val="true" id="field:@field.Id" name="PostData" type="radio"><span>@fieldEnum.Name</span>
+                        <input name="BoolValue" type="hidden" value="false">
+                    }
                 </div>
-                break;
-            case wqwz.Models.FormFieldType.Date:
-                break;
-            case wqwz.Models.FormFieldType.Number:
-                break;
-            case wqwz.Models.FormFieldType.Regex:
-                break;
-            case wqwz.Models.FormFieldType.TextArea:
-                break;
-            case wqwz.Models.FormFieldType.EnumRadio:
-                break;
-            case wqwz.Models.FormFieldType.EnumCheck:
-                break;
-            case wqwz.Models.FormFieldType.EnumSelect:
-            <div class="form-group">
-                <label class="control-label" for="field:@field.Id">@field.Name</label>
+
+                    break;
+                case wqwz.Models.FormFieldType.EnumCheck:
+                <div class="controls">
+                    @foreach (var fieldEnum in field.FormFieldEnums)
+                    {
+                        <input data-val="true" id="BoolValue" type="checkbox"><input name="BoolValue" type="hidden" value="false">
+                    }
+                </div>
+                    break;
+                case wqwz.Models.FormFieldType.EnumSelect:
                 <select name="PostData" id="field:@field.Id" class="form-control">
                     @foreach (var fieldEnum in field.FormFieldEnums)
                     {
                         <option value="@fieldEnum.Value">@fieldEnum.Name</option>
                     }
                 </select>
-            </div>
+                    break;
+                case wqwz.Models.FormFieldType.Editor:
+                <textarea  data-summernote=""  name="PostData" rows="2" style="display: none;"></textarea>
+                    break;
+                default:
+                    break;
+            }
 
-                    break;
-            default:
-                    break;
-        }
+
+        </div>
     }
+
     <button class="btn btn-primary">提交</button>
 </form>
 @Model.Content
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/val")
+    <script>
+        $(document).ready(function () {
+            $('[data-summernote]').summernote({
+                height: 200,
+                lang: 'zh-CN' // default: 'en-US'
+            });
+        });
+    </script>
+}

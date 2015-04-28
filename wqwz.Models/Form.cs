@@ -15,7 +15,7 @@ namespace wqwz.Models
         }
 
         public int Id { get; set; }
-
+   
         [Required]
         public string Title { get; set; }
 
@@ -30,8 +30,6 @@ namespace wqwz.Models
 
         public int FormTypeId { get; set; }
         public int FormTemplateId { get; set; }
-         
-
         public virtual FormType FormType { get; set; }
 
         public virtual User ReleaseUser { get; set; }

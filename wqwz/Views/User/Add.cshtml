@@ -7,6 +7,7 @@
     @Html.EditorFor(model => model.Sex)
     @Html.EditorFor(model => model.Status)
     @Html.EditorFor(model => model.RealName)
+    @Html.EditorFor(model => model.Elevel)
     @Html.EditorFor(model => model.OrganizationName)
     @Html.EditorFor(model => model.PhoneNumber)
     @Html.EditorFor(model => model.Public)
@@ -19,6 +20,7 @@
     <script>
         $(document).ready(function () {
             $('[data-summernote]').summernote({
+                height: 200,
                 lang: 'zh-CN' // default: 'en-US'
             });
         });

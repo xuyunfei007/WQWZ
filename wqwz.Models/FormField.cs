@@ -31,6 +31,8 @@ namespace wqwz.Models
         public virtual ICollection<FormData> FormDatas { get; set; }
 
         public virtual ICollection<FormFieldEnum> FormFieldEnums { get; set; }
+
+        public virtual ICollection<ELevel> ELevel { get; set; }
          
     }
 }

@@ -6,19 +6,19 @@ namespace wqwz.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("NewsType")]
+    //[Table("NewsType")]
     public partial class NewsType
     {
-        public NewsType()
-        {
-            News = new HashSet<News>();
-        }
+        //public NewsType()
+        //{
+        //    News = new HashSet<News>();
+        //}
 
-        public int Id { get; set; }
+        //public int Id { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+        //[Required]
+        //public string Name { get; set; }
 
-        public virtual ICollection<News> News { get; set; }
+        //public virtual ICollection<News> News { get; set; }
     }
 }

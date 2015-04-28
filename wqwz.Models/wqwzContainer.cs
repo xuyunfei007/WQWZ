@@ -18,7 +18,7 @@ namespace wqwz.Models
         public virtual DbSet<Form> FormSet { get; set; }
         public virtual DbSet<FormType> FormTypeSet { get; set; }
         public virtual DbSet<News> NewsSet { get; set; }
-        public virtual DbSet<NewsType> NewsTypeSet { get; set; }
+        //public virtual DbSet<NewsType> NewsTypeSet { get; set; }
         public virtual DbSet<User> UserSet { get; set; }
         public virtual DbSet<FormTemplate> FormTemplateSet { get; set; }
 
@@ -42,11 +42,11 @@ namespace wqwz.Models
                 .HasForeignKey(e => e.FormTypeId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<NewsType>()
-                .HasMany(e => e.News)
-                .WithRequired(e => e.NewsType)
-                .HasForeignKey(e => e.NewsTypeId)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<NewsType>()
+            //    .HasMany(e => e.News)
+            //    .WithRequired(e => e.NewsType)
+            //    .HasForeignKey(e => e.NewsTypeId)
+            //    .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.FormDatas)

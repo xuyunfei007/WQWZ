@@ -59,6 +59,10 @@ namespace wqwz.Models
         [StringLength(30, MinimumLength = 2)]
         public string RealName { get; set; }
 
+        [Display(Name = "段位")]
+        [UIHint("Enum")]
+        public ELevel Elevel { get; set; }
+
         [Display(Name = "机构名")]
         [DataType(DataType.Text)]
         [StringLength(30, MinimumLength = 2)]

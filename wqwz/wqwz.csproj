@@ -155,6 +155,7 @@
     <Compile Include="Controllers\FormFieldEnumController.cs" />
     <Compile Include="Controllers\FormTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="FormController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -779,6 +780,7 @@
     <Content Include="Views\FormFieldEnum\Add.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Summernote.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PhoneNumber.cshtml" />
+    <Content Include="Views\News\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

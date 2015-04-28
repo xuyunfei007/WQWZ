@@ -1,0 +1,19 @@
+﻿@model wqwz.Models.News
+ 
+<form method="post">
+    @Html.EditorFor(model=>model.Title)
+    @Html.EditorFor(model => model.Content)
+    <button type="submit">提交</button>
+</form>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/val")
+    <script>
+        $(document).ready(function () {
+            $('[data-summernote]').summernote({
+                height: 200,
+                lang: 'zh-CN' // default: 'en-US'
+            });
+        });
+    </script>
+}

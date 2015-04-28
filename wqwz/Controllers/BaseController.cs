@@ -10,7 +10,7 @@ using wqwz.Services;
 namespace wqwz.Controllers
 {
     public abstract class BaseController<TModel> : Controller where TModel:class
-    { 
+    {
         public BaseService<TModel> Service { get; set; }
         public BaseController()
         { 
