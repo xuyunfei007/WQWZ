@@ -208,8 +208,10 @@ namespace wqwz.Controllers
             container.SaveChanges();
             var formfield = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.Text, Name = "标题" };
             var formfield2 = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.Upload, Name = "选择图片" };
+            var formfield3 = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.Upload, Name = "选择图片" };
             container.FormFieldSet.Add(formfield);
             container.FormFieldSet.Add(formfield2);
+            container.FormFieldSet.Add(formfield3);
             container.SaveChanges();
             return Content(user.Id.ToString());
         }

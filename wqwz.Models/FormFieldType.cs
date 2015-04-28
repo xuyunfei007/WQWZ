@@ -14,6 +14,8 @@ namespace wqwz.Models
         EnumSelect = 7,
         ELevel=8,
         Editor=9,
-        Upload
+        UploadFile=10,
+        UploadPicture= 11,
+
     }
 }
