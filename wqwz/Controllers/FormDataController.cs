@@ -11,7 +11,7 @@ namespace wqwz.Controllers
     {
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult AddArray(int[] FormFieldId, string[] PostData, int FormId)
+        public ActionResult AddArray(int[] FormFieldId, string[] PostData, int FormId,int[] FileIndex)
         {
             var formDatas = new List<FormData>();
             for ( int i = 0; i < FormFieldId.Length; i++)

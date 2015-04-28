@@ -13,6 +13,7 @@ namespace wqwz.Models
         EnumCheck = 6,
         EnumSelect = 7,
         ELevel=8,
-        Editor=9
+        Editor=9,
+        Upload
     }
 }

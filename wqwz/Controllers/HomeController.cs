@@ -184,6 +184,34 @@ namespace wqwz.Controllers
             container.SaveChanges();
             return Content(user.Id.ToString());
         }
+        public virtual ActionResult PicUpload()
+        {
+            //TODO
+            var container = new wqwz.Models.wqwzContainer();
+            var user = new User() { Email = "123456@qq.com", Name = "john", Pwd = "123456", RegDate = DateTime.Now, Sex = SexType.Male };
+            container.UserSet.Add(user);
+            FormType type = null;
+            for (int i = 0; i < 2; i++)
+            {
+                type = new FormType() { Name = "表单类型" + i.ToString() };
+                container.FormTypeSet.Add(type);
+            }
+            container.SaveChanges();
 
+            var formtpl = new FormTemplate() { Name = "图片上传" };
+            container.FormTemplateSet.Add(formtpl);
+            container.SaveChanges();
+
+            var form = new Form() { UserId = user.Id, Content = "什么什么什么", Status = StatusType.Unhandled, ReleaseDate = DateTime.Now, Title = "表单1", FormTypeId = type.Id, FormTemplateId = formtpl.Id };
+            container.FormSet.Add(form);
+
+            container.SaveChanges();
+            var formfield = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.Text, Name = "标题" };
+            var formfield2 = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.Upload, Name = "选择图片" };
+            container.FormFieldSet.Add(formfield);
+            container.FormFieldSet.Add(formfield2);
+            container.SaveChanges();
+            return Content(user.Id.ToString());
+        }
     }
 }

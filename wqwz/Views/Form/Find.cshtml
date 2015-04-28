@@ -59,13 +59,7 @@
 
 }
 
-                    @foreach (var item in typeof(wqwz.Models.ELevel).GetFields())
-                    {
-                         DescriptionAttribute descAttr = Attribute.GetCustomAttribute(item, typeof(DescriptionAttribute)) as DescriptionAttribute;
-                        
-                        
-                       
-                    }
+                    
                 </select>
                     break;
                 case wqwz.Models.FormFieldType.TextArea:
@@ -101,6 +95,10 @@
                 case wqwz.Models.FormFieldType.Editor:
                 <textarea  data-summernote=""  name="PostData" rows="2" style="display: none;"></textarea>
                     break;
+                     case wqwz.Models.FormFieldType.Upload:
+                  <input type="file">
+                     
+                    break;
                 default:
                     break;
             }
@@ -121,6 +119,13 @@
                 height: 200,
                 lang: 'zh-CN' // default: 'en-US'
             });
+        });
+    </script>
+}
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('input[type=file]').bootstrapFileInput();
         });
     </script>
 }
