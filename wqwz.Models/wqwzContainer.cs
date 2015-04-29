@@ -26,7 +26,7 @@ namespace wqwz.Models
         {
             modelBuilder.Entity<FormField>()
                 .HasMany(e => e.FormDatas)
-                .WithRequired(e => e.FormFields)
+                .WithRequired(e => e.FormField)
                 .HasForeignKey(e => e.FormFieldId)
                 .WillCascadeOnDelete(false); 
 

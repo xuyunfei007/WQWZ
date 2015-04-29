@@ -1,19 +1,44 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@using wqwz.Utility
+<!DOCTYPE html>
+<html lang="@LocalizationHelper.Lang">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <title>@ViewBag.Title 围棋网站</title>
+    @RenderSection("meta", required: false)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/Content/site" rel="stylesheet">
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    @Html.Partial("_html5shiv")
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/Content/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/Content/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Content/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/Content/ico/apple-touch-icon-57-precomposed.png">
+    <link href="~/Content/ico/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>
-    @Html.Action("_NavBar", "Home")
-    @RenderBody()
+    @Html.Partial("/Views/Shared/_header.cshtml")
+
+    @RenderSection("featured", required: false)
+
+    <div class="container">
+        @RenderBody()
+        <hr />
+        <div class="footer">
+            <p>&copy; 围棋网站 2015 </p>
+        </div>
+    </div>
+
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    @Scripts.Render("~/Scripts/bootstrap")
     @RenderSection("scripts", required: false)
+    @*<div class="footer footerdark">*@
+        @*@RenderPage("~/Views/Shared/_Footer.cshtml")*@
+    @*</div>*@
+    <link href="~/Content/summernote/summernote.css" rel="stylesheet" />
+    <script src="~/Scripts/summernote/summernote.min.js"></script>
+    <script src="~/Scripts/summernote/summernote-zh-CN.js"></script>
 </body>
 </html>

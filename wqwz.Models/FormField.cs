@@ -13,26 +13,28 @@ namespace wqwz.Models
         {
             FormDatas = new HashSet<FormData>();
             FormFieldEnums = new HashSet<FormFieldEnum>();
+            IsShowInList = false;
         }
 
         public int Id { get; set; }
 
+        public bool IsShowInList { get; set; }
         public FormFieldType Type { get; set; }
 
-        public int FormTemplateId { get; set; } 
+        public int FormTemplateId { get; set; }
 
         public string Regex { get; set; }
 
         [Required]
         public string Name { get; set; }
 
-        public virtual FormTemplate FormTemplate { get; set; } 
+        public virtual FormTemplate FormTemplate { get; set; }
 
         public virtual ICollection<FormData> FormDatas { get; set; }
 
         public virtual ICollection<FormFieldEnum> FormFieldEnums { get; set; }
 
         public virtual ICollection<ELevel> ELevel { get; set; }
-         
+
     }
 }

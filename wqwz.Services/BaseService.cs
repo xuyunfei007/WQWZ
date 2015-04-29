@@ -17,11 +17,14 @@ namespace wqwz.Services
             return Container.SaveChanges();
         }
         
+        public TModel FindGuid(Guid guid)
+        {
+            return DbSet.Find(guid);
+        }
         public TModel Find(int id)
         {
             return DbSet.Find(id);
         }
-
         public TModel Remove(TModel entity)
         {
             var newEntity = DbSet.Remove(entity);
@@ -29,9 +32,9 @@ namespace wqwz.Services
             return newEntity;
         }
 
-        public TModel Remove(int id)
+        public TModel Remove(Guid guid)
         {
-            return Remove(Find(id));
+            return Remove(FindGuid(guid));
         }
 
         public TModel Add(TModel entity)

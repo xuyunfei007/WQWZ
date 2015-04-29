@@ -19,7 +19,7 @@ namespace wqwz.Models
 
         [Required]
         public string Name { get; set; }
-
+        public int Type { get; set; }
         public virtual ICollection<FormField> FormFields { get; set; }
         public virtual ICollection<Form> Forms { get; set; }
 

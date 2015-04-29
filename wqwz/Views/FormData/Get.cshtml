@@ -1,0 +1,34 @@
+﻿@model List<wqwz.Models.FormData>
+
+
+
+
+
+<table class="am-table wq-table-mask">
+    <thead>
+        <tr>
+            @foreach (var th in Model.Take(Model.GroupBy(data => data.Guid).First().Count()))
+            {
+                <th>
+                    @th.FormField.Name
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var group in Model.GroupBy(data => data.Guid))
+        {
+            <tr>
+                @foreach (var item in group)
+                {
+                    <td>
+                        @item.PostData
+                    </td>
+                }
+
+            </tr>
+        }
+
+    </tbody>
+</table>

@@ -21,10 +21,12 @@ namespace wqwz.Models
 
         public int PostUserId { get; set; }
 
+        public Guid Guid { get; set; }
+
         public string PostData { get; set; }
         public int FormId { get; set; }
 
-        public virtual FormField FormFields { get; set; }
+        public virtual FormField FormField { get; set; }
 
         public virtual User PostUser { get; set; }
 

@@ -94,8 +94,8 @@ namespace wqwz.Controllers
             var form = new Form() { UserId = user.Id, Content = "什么什么什么",Status = StatusType.Unhandled, ReleaseDate = DateTime.Now, Title = "表单1", FormTypeId = type.Id, FormTemplateId = formtpl.Id };
             container.FormSet.Add(form);
             container.SaveChanges();
-            var formfield1 = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.EnumRadio,Name="身份"};
-            var formfield2 = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.Text, Name = "标题" };
+            var formfield1 = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.EnumRadio,Name="身份",IsShowInList=true};
+            var formfield2 = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.Text, Name = "标题" ,IsShowInList=true};
             var formfield3 = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.Text, Name = "教学" };
             var formfield4 = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.Text, Name = "收费" };
             var formfield5 = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.Text, Name = "教学时间" };
@@ -169,7 +169,7 @@ namespace wqwz.Controllers
             }
             container.SaveChanges();
 
-            var formtpl = new FormTemplate() { Name = "招生" };
+            var formtpl = new FormTemplate() { Name = "招生"};
             container.FormTemplateSet.Add(formtpl);
             container.SaveChanges();
 
@@ -206,12 +206,11 @@ namespace wqwz.Controllers
             container.FormSet.Add(form);
 
             container.SaveChanges();
-            var formfield = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.Text, Name = "标题" };
-            var formfield2 = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.Upload, Name = "选择图片" };
-            var formfield3 = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.Upload, Name = "选择图片" };
+            var formfield = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.Text, Name = "标题"};
+            var formfield2 = new FormField() { FormTemplateId = formtpl.Id, Type = FormFieldType.UploadPicture , Name = "选择图片" };
             container.FormFieldSet.Add(formfield);
             container.FormFieldSet.Add(formfield2);
-            container.FormFieldSet.Add(formfield3);
+      
             container.SaveChanges();
             return Content(user.Id.ToString());
         }

@@ -1,10 +1,9 @@
-﻿
-@using System.ComponentModel;
+﻿@using System.ComponentModel;
 @model wqwz.Models.Form
 @Model.Title
 @Model.ReleaseDate
 
-<form method="post" action="/FormData/AddArray">
+<form method="post" action="/FormData/AddArray" enctype="multipart/form-data">
     <input name="FormId" value="@Model.Id" type="hidden" />
     @foreach (var field in Model.FormTemplate.FormFields)
     {
@@ -14,6 +13,7 @@
             @switch (field.Type)
             {
                 case wqwz.Models.FormFieldType.Text:
+                    
                     <input type="text" name="PostData" class="form-control" id="field:@field.Id" placeholder="@field.Name">
                     break;
                 case wqwz.Models.FormFieldType.Date:
@@ -27,16 +27,17 @@
                     break;
                 case wqwz.Models.FormFieldType.Regex:
                     break;
+
                 case wqwz.Models.FormFieldType.ELevel:
                 <select name="PostData" class="form-control">
                     @{Type enumType = typeof(wqwz.Models.ELevel);
                       // 获取枚举常数名称。
                       string[] names = Enum.GetNames(enumType);
-                      
+
                       int count=0;
                       foreach (var name in names)
                       {
-                    
+
                           if (name != null)
                           {
                               // 获取枚举字段。
@@ -48,8 +49,8 @@
                                       typeof(DescriptionAttribute), false) as DescriptionAttribute;
                                   if (attr != null)
                                   {
-                                      
-                                            <option value="@count"> @attr.Description</option>
+
+                                    <option value="@count"> @attr.Description</option>
                                       count++;
 
                                   }
@@ -57,14 +58,14 @@
                           }
                       }
 
-}
+                    }
 
-                    
+
                 </select>
-                    break;
+                      break;
                 case wqwz.Models.FormFieldType.TextArea:
                 <textarea class="form-control input-block-level" cols="8" id="field:@field.Id" name="PostData" rows="8"></textarea>
-                    break;
+                      break;
                 case wqwz.Models.FormFieldType.EnumRadio:
                 <div>
                     @foreach (var fieldEnum in field.FormFieldEnums)
@@ -80,7 +81,7 @@
                 <div class="controls">
                     @foreach (var fieldEnum in field.FormFieldEnums)
                     {
-                        <input data-val="true" id="BoolValue" type="checkbox"><input name="BoolValue" type="hidden" value="false">
+                        <input data-val="true" id="BoolValue" type="checkbox"><input name="PostData" type="hidden" value="false">
                     }
                 </div>
                     break;
@@ -93,11 +94,14 @@
                 </select>
                     break;
                 case wqwz.Models.FormFieldType.Editor:
-                <textarea  data-summernote=""  name="PostData" rows="2" style="display: none;"></textarea>
+                <textarea data-summernote="" name="PostData" rows="2" style="display: none;"></textarea>
                     break;
-                     case wqwz.Models.FormFieldType.Upload:
-                  <input type="file">
-                     
+                    case wqwz.Models.FormFieldType.UploadFile:
+                case wqwz.Models.FormFieldType.UploadPicture:
+                <input type="hidden" name="FileIndex" value="@field.Id" />
+                <input type="hidden" name="PostData" value=" " />
+                <input type="file" name="file">
+
                     break;
                 default:
                     break;
@@ -119,13 +123,9 @@
                 height: 200,
                 lang: 'zh-CN' // default: 'en-US'
             });
-        });
-    </script>
-}
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            $('input[type=file]').bootstrapFileInput();
+            $(document).ready(function () {
+                $('input[type=file]').bootstrapFileInput();
+            });
         });
     </script>
 }
