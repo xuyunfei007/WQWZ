@@ -24,13 +24,13 @@ using System.Web.Routing;
 using T4MVC;
 namespace wqwz.Controllers
 {
-    public partial class FormFieldEnumController
+    public partial class FormTypeController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public FormFieldEnumController() { }
+        public FormTypeController() { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected FormFieldEnumController(Dummy d) { }
+        protected FormTypeController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -78,13 +78,13 @@ namespace wqwz.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public FormFieldEnumController Actions { get { return MVC.FormFieldEnum; } }
+        public FormTypeController Actions { get { return MVC.FormType; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "FormFieldEnum";
+        public readonly string Name = "FormType";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "FormFieldEnum";
+        public const string NameConst = "FormType";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -150,28 +150,14 @@ namespace wqwz.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Add = "Add";
             }
-            public readonly string Add = "~/Views/FormFieldEnum/Add.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_FormFieldEnumController : wqwz.Controllers.FormFieldEnumController
+    public partial class T4MVC_FormTypeController : wqwz.Controllers.FormTypeController
     {
-        public T4MVC_FormFieldEnumController() : base(Dummy.Instance) { }
-
-        [NonAction]
-        partial void AddOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.FormFieldEnum entity);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Add(wqwz.Models.FormFieldEnum entity)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Add);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "entity", entity);
-            AddOverride(callInfo, entity);
-            return callInfo;
-        }
+        public T4MVC_FormTypeController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void AddOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -181,6 +167,18 @@ namespace wqwz.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Add);
             AddOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void AddOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.FormType entity);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Add(wqwz.Models.FormType entity)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Add);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "entity", entity);
+            AddOverride(callInfo, entity);
             return callInfo;
         }
 
@@ -197,10 +195,10 @@ namespace wqwz.Controllers
         }
 
         [NonAction]
-        partial void RemoveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.FormFieldEnum entity);
+        partial void RemoveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.FormType entity);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Remove(wqwz.Models.FormFieldEnum entity)
+        public override System.Web.Mvc.ActionResult Remove(wqwz.Models.FormType entity)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Remove);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "entity", entity);
@@ -209,10 +207,10 @@ namespace wqwz.Controllers
         }
 
         [NonAction]
-        partial void UpdateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.FormFieldEnum entity);
+        partial void UpdateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.FormType entity);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Update(wqwz.Models.FormFieldEnum entity)
+        public override System.Web.Mvc.ActionResult Update(wqwz.Models.FormType entity)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Update);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "entity", entity);

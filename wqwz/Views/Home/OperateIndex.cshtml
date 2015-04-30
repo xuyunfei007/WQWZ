@@ -1,0 +1,116 @@
+﻿<div class="container">
+    <div class="col-lg-12">
+        <h3 class="page-header">Related Projects</h3>
+    </div>
+    <div class="row" style="text-align:center">
+
+        <div class="col-sm-3 col-xs-3">
+            <a href="#">
+                <img src="http://placehold.it/350x150" class="img-responsive img-customer">
+                <div>33</div>
+            </a>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+            <a href="#">
+                <img src="http://placehold.it/350x150" class="img-responsive img-customer">
+                <div>33</div>
+            </a>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+            <a href="#">
+                <img src="http://placehold.it/350x150" class="img-responsive img-customer">
+                <div>33</div>
+            </a>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+            <a href="#">
+                <img src="http://placehold.it/350x150" class="img-responsive img-customer">
+                <div>33</div>
+            </a>
+        </div>
+    </div>
+    <div class="row" style="text-align:center">
+
+        <div class="col-sm-3 col-xs-3">
+            <a href="#">
+                <img src="http://placehold.it/350x150" class="img-responsive img-customer">
+                <div>33</div>
+            </a>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+            <a href="#">
+                <img src="http://placehold.it/350x150" class="img-responsive img-customer">
+                <div>33</div>
+            </a>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+            <a href="#">
+                <img src="http://placehold.it/350x150" class="img-responsive img-customer">
+                <div>33</div>
+            </a>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+            <a href="#">
+                <img src="http://placehold.it/350x150" class="img-responsive img-customer">
+                <div>33</div>
+            </a>
+        </div>
+    </div>
+    <div class=" row">
+
+
+        <div class="col-md-3  panel panel-default">
+            <div class="panel-heading">
+                导航
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li>
+                        <div><a href="">激活独立首页</a></div>
+                    </li>
+                    <li>
+                        <div><a href="">发布家教信息</a><a href="/homeeduinfo/ManageHomeEdu">[管理]</a></div>
+                    </li>
+                    <li>
+                        <div><a href="">新闻公告</a><a href="/newrelease/ManageNews">[管理]</a></div>
+                    </li>
+                    <li>
+                        <div><a href="">图片上传</a><a href="/picture/managepic">[管理]</a></div>
+                    </li>
+                    <li>
+                        <div><a href="">招生</a><a href="/recruitstu/managerecruitstu">[管理]</a></div>
+                    </li>
+                    <li>
+                        <div><a href="">招聘</a><a href="/recruitteacher/managerecruit">[管理]</a></div>
+                    </li>
+                    <li>
+                        <div><a href="">围棋知识</a></div>
+                    </li>
+                    <li>
+                        <div><a href="">报名信息管理</a></div>
+                    </li>
+                    <li>
+                        <div><a href="">完善个人资料</a></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="col-md-9 ">
+            @if (Request["guid"]==null)
+            {
+               @Html.Action(MVC.FormData._GetEdu(1, false)) 
+            }
+            else
+            {
+                @Html.Action("_GetEduInfo","FormData",Request["guid"])
+            }
+
+        </div>
+
+    </div>
+
+
+</div>
+    

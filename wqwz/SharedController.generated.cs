@@ -37,11 +37,37 @@ namespace T4MVC
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _header = "_header";
+                public readonly string _html5shiv = "_html5shiv";
                 public readonly string _Layout = "_Layout";
                 public readonly string Error = "Error";
             }
+            public readonly string _header = "~/Views/Shared/_header.cshtml";
+            public readonly string _html5shiv = "~/Views/Shared/_html5shiv.cshtml";
             public readonly string _Layout = "~/Views/Shared/_Layout.cshtml";
             public readonly string Error = "~/Views/Shared/Error.cshtml";
+            static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
+            public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public partial class _EditorTemplatesClass
+            {
+                public readonly string Boolean = "Boolean";
+                public readonly string DateTime = "DateTime";
+                public readonly string Decimal = "Decimal";
+                public readonly string EmailAddress = "EmailAddress";
+                public readonly string Enum = "Enum";
+                public readonly string HttpPostedFileBase = "HttpPostedFileBase";
+                public readonly string Int32 = "Int32";
+                public readonly string Markdown = "Markdown";
+                public readonly string Multiline = "Multiline";
+                public readonly string Password = "Password";
+                public readonly string PhoneNumber = "PhoneNumber";
+                public readonly string Single = "Single";
+                public readonly string String = "String";
+                public readonly string Summernote = "Summernote";
+                public readonly string Text = "Text";
+                public readonly string TimeSpan = "TimeSpan";
+            }
         }
     }
 

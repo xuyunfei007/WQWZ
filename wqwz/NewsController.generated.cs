@@ -24,13 +24,13 @@ using System.Web.Routing;
 using T4MVC;
 namespace wqwz.Controllers
 {
-    public partial class FormFieldEnumController
+    public partial class NewsController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public FormFieldEnumController() { }
+        public NewsController() { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected FormFieldEnumController(Dummy d) { }
+        protected NewsController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -78,13 +78,13 @@ namespace wqwz.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public FormFieldEnumController Actions { get { return MVC.FormFieldEnum; } }
+        public NewsController Actions { get { return MVC.News; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "FormFieldEnum";
+        public readonly string Name = "News";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "FormFieldEnum";
+        public const string NameConst = "News";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -152,20 +152,20 @@ namespace wqwz.Controllers
             {
                 public readonly string Add = "Add";
             }
-            public readonly string Add = "~/Views/FormFieldEnum/Add.cshtml";
+            public readonly string Add = "~/Views/News/Add.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_FormFieldEnumController : wqwz.Controllers.FormFieldEnumController
+    public partial class T4MVC_NewsController : wqwz.Controllers.NewsController
     {
-        public T4MVC_FormFieldEnumController() : base(Dummy.Instance) { }
+        public T4MVC_NewsController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void AddOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.FormFieldEnum entity);
+        partial void AddOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.News entity);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Add(wqwz.Models.FormFieldEnum entity)
+        public override System.Web.Mvc.ActionResult Add(wqwz.Models.News entity)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Add);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "entity", entity);
@@ -197,10 +197,10 @@ namespace wqwz.Controllers
         }
 
         [NonAction]
-        partial void RemoveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.FormFieldEnum entity);
+        partial void RemoveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.News entity);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Remove(wqwz.Models.FormFieldEnum entity)
+        public override System.Web.Mvc.ActionResult Remove(wqwz.Models.News entity)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Remove);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "entity", entity);
@@ -209,10 +209,10 @@ namespace wqwz.Controllers
         }
 
         [NonAction]
-        partial void UpdateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.FormFieldEnum entity);
+        partial void UpdateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.News entity);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Update(wqwz.Models.FormFieldEnum entity)
+        public override System.Web.Mvc.ActionResult Update(wqwz.Models.News entity)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Update);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "entity", entity);

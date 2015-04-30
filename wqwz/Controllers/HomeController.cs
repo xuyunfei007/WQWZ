@@ -21,7 +21,10 @@ namespace wqwz.Controllers
 #endif
             return View();
         }
-
+        public virtual ActionResult OperateIndex()
+        {
+            return View();
+        }
         public virtual ActionResult _NavBar()
         {
             return PartialView();

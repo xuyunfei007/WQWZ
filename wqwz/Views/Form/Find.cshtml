@@ -15,6 +15,10 @@
                 case wqwz.Models.FormFieldType.Text:
                     
                     <input type="text" name="PostData" class="form-control" id="field:@field.Id" placeholder="@field.Name">
+                    foreach (var item in ViewBag.data)
+                    {
+                        @item.PostData
+                    }
                     break;
                 case wqwz.Models.FormFieldType.Date:
                 <input class="form-control datepicker" data-date-format="yyyy/m/d"
@@ -70,9 +74,7 @@
                 <div>
                     @foreach (var fieldEnum in field.FormFieldEnums)
                     {
-
-                        <input data-val="true" id="field:@field.Id" name="PostData" type="radio"><span>@fieldEnum.Name</span>
-                        <input name="BoolValue" type="hidden" value="false">
+                        <input  name="PostData" type="radio" value="@fieldEnum.Value"><span>@fieldEnum.Name</span>
                     }
                 </div>
 

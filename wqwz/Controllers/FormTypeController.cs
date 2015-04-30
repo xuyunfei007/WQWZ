@@ -7,7 +7,7 @@ using wqwz.Models;
 
 namespace wqwz.Controllers
 {
-    public class FormTypeController : BaseController<FormType>
+    public partial class FormTypeController : BaseController<FormType>
     {
 
     }

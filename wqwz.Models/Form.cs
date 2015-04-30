@@ -16,7 +16,7 @@ namespace wqwz.Models
 
         public int Id { get; set; }
    
-        [Required]
+        //[Required]
         public string Title { get; set; }
 
         public DateTime ReleaseDate { get; set; }

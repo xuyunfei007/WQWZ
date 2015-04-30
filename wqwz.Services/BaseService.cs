@@ -36,6 +36,10 @@ namespace wqwz.Services
         {
             return Remove(FindGuid(guid));
         }
+        public TModel Remove(int id)
+        {
+            return Remove(Find(id));
+        }
 
         public TModel Add(TModel entity)
         {

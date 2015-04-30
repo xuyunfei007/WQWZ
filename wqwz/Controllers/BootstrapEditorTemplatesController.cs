@@ -2,9 +2,9 @@ using System.Web.Mvc;
 
 namespace wqwz.Controllers
 {
-    public class BootstrapEditorTemplatesController : Controller
+    public partial class BootstrapEditorTemplatesController : Controller
     {
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View();
         }

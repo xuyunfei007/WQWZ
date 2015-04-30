@@ -4,7 +4,7 @@
 
 
 
-<table class="am-table wq-table-mask">
+<table class= "table table-bordered">
     <thead>
         <tr>
             @foreach (var th in Model.Take(Model.GroupBy(data => data.Guid).First().Count()))
@@ -13,6 +13,7 @@
                     @th.FormField.Name
                 </th>
             }
+            <th>操作</th>
         </tr>
     </thead>
     <tbody>
@@ -23,11 +24,16 @@
                 @foreach (var item in group)
                 {
                     <td>
-                        @item.PostData
+                        @Translate.tran(item)
                     </td>
                 }
-
+                <td>
+                    @Html.ActionLink("查看", "OperateIndex", "Home", new { guid = group.First().Guid },new{ })
+                    @Html.ActionLink("修改", "Find", "Form", new { id=1,guid = group.First().Guid }, new { })
+                    @Html.ActionLink("删除", "DelEdu", "FormData", new { guid = group.First().Guid }, new { })
+                </td>
             </tr>
+            
         }
 
     </tbody>

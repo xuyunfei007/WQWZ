@@ -24,13 +24,13 @@ using System.Web.Routing;
 using T4MVC;
 namespace wqwz.Controllers
 {
-    public partial class FormFieldEnumController
+    public partial class FormDataController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public FormFieldEnumController() { }
+        public FormDataController() { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected FormFieldEnumController(Dummy d) { }
+        protected FormDataController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -60,6 +60,24 @@ namespace wqwz.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult AddArray()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddArray);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult _GetEdu()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames._GetEdu);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult _GetEduInfo()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames._GetEduInfo);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Find()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Find);
@@ -78,13 +96,13 @@ namespace wqwz.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public FormFieldEnumController Actions { get { return MVC.FormFieldEnum; } }
+        public FormDataController Actions { get { return MVC.FormData; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "FormFieldEnum";
+        public readonly string Name = "FormData";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "FormFieldEnum";
+        public const string NameConst = "FormData";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -92,6 +110,9 @@ namespace wqwz.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
+            public readonly string AddArray = "AddArray";
+            public readonly string _GetEdu = "_GetEdu";
+            public readonly string _GetEduInfo = "_GetEduInfo";
             public readonly string Add = "Add";
             public readonly string Find = "Find";
             public readonly string Remove = "Remove";
@@ -101,6 +122,9 @@ namespace wqwz.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
+            public const string AddArray = "AddArray";
+            public const string _GetEdu = "_GetEdu";
+            public const string _GetEduInfo = "_GetEduInfo";
             public const string Add = "Add";
             public const string Find = "Find";
             public const string Remove = "Remove";
@@ -108,6 +132,34 @@ namespace wqwz.Controllers
         }
 
 
+        static readonly ActionParamsClass_AddArray s_params_AddArray = new ActionParamsClass_AddArray();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_AddArray AddArrayParams { get { return s_params_AddArray; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_AddArray
+        {
+            public readonly string FormFieldId = "FormFieldId";
+            public readonly string PostData = "PostData";
+            public readonly string FormId = "FormId";
+            public readonly string FileIndex = "FileIndex";
+        }
+        static readonly ActionParamsClass__GetEdu s_params__GetEdu = new ActionParamsClass__GetEdu();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass__GetEdu _GetEduParams { get { return s_params__GetEdu; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass__GetEdu
+        {
+            public readonly string id = "id";
+            public readonly string isFilt = "isFilt";
+        }
+        static readonly ActionParamsClass__GetEduInfo s_params__GetEduInfo = new ActionParamsClass__GetEduInfo();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass__GetEduInfo _GetEduInfoParams { get { return s_params__GetEduInfo; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass__GetEduInfo
+        {
+            public readonly string guid = "guid";
+        }
         static readonly ActionParamsClass_Add s_params_Add = new ActionParamsClass_Add();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Add AddParams { get { return s_params_Add; } }
@@ -150,26 +202,56 @@ namespace wqwz.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Add = "Add";
+                public readonly string _GetEdu = "_GetEdu";
+                public readonly string _GetEduInfo = "_GetEduInfo";
             }
-            public readonly string Add = "~/Views/FormFieldEnum/Add.cshtml";
+            public readonly string _GetEdu = "~/Views/FormData/_GetEdu.cshtml";
+            public readonly string _GetEduInfo = "~/Views/FormData/_GetEduInfo.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_FormFieldEnumController : wqwz.Controllers.FormFieldEnumController
+    public partial class T4MVC_FormDataController : wqwz.Controllers.FormDataController
     {
-        public T4MVC_FormFieldEnumController() : base(Dummy.Instance) { }
+        public T4MVC_FormDataController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void AddOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.FormFieldEnum entity);
+        partial void AddArrayOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int[] FormFieldId, string[] PostData, int FormId, int[] FileIndex);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Add(wqwz.Models.FormFieldEnum entity)
+        public override System.Web.Mvc.ActionResult AddArray(int[] FormFieldId, string[] PostData, int FormId, int[] FileIndex)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Add);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "entity", entity);
-            AddOverride(callInfo, entity);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddArray);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "FormFieldId", FormFieldId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PostData", PostData);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "FormId", FormId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "FileIndex", FileIndex);
+            AddArrayOverride(callInfo, FormFieldId, PostData, FormId, FileIndex);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void _GetEduOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id, bool isFilt);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult _GetEdu(int id, bool isFilt)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames._GetEdu);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "isFilt", isFilt);
+            _GetEduOverride(callInfo, id, isFilt);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void _GetEduInfoOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid guid);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult _GetEduInfo(System.Guid guid)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames._GetEduInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "guid", guid);
+            _GetEduInfoOverride(callInfo, guid);
             return callInfo;
         }
 
@@ -181,6 +263,18 @@ namespace wqwz.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Add);
             AddOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void AddOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.FormData entity);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Add(wqwz.Models.FormData entity)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Add);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "entity", entity);
+            AddOverride(callInfo, entity);
             return callInfo;
         }
 
@@ -197,10 +291,10 @@ namespace wqwz.Controllers
         }
 
         [NonAction]
-        partial void RemoveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.FormFieldEnum entity);
+        partial void RemoveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.FormData entity);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Remove(wqwz.Models.FormFieldEnum entity)
+        public override System.Web.Mvc.ActionResult Remove(wqwz.Models.FormData entity)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Remove);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "entity", entity);
@@ -209,10 +303,10 @@ namespace wqwz.Controllers
         }
 
         [NonAction]
-        partial void UpdateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.FormFieldEnum entity);
+        partial void UpdateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, wqwz.Models.FormData entity);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Update(wqwz.Models.FormFieldEnum entity)
+        public override System.Web.Mvc.ActionResult Update(wqwz.Models.FormData entity)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Update);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "entity", entity);

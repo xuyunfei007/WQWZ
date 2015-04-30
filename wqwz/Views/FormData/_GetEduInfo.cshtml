@@ -1,0 +1,21 @@
+﻿@model List<wqwz.Models.FormData>
+
+
+
+
+
+<table class="table table-bordered table-striped">
+
+    @foreach (var th in this.Model)
+    {
+        <tr>
+            <td style="width:25%">
+                @th.FormField.Name
+            </td>
+            <td>
+                @Translate.tran(th)
+            </td>
+        </tr>
+    }
+</table>
+

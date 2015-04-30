@@ -24,13 +24,13 @@ using System.Web.Routing;
 using T4MVC;
 namespace wqwz.Controllers
 {
-    public partial class HomeController
+    public partial class BootstrapEditorTemplatesController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public HomeController() { }
+        public BootstrapEditorTemplatesController() { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected HomeController(Dummy d) { }
+        protected BootstrapEditorTemplatesController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -60,13 +60,13 @@ namespace wqwz.Controllers
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public HomeController Actions { get { return MVC.Home; } }
+        public BootstrapEditorTemplatesController Actions { get { return MVC.BootstrapEditorTemplates; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Home";
+        public readonly string Name = "BootstrapEditorTemplates";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Home";
+        public const string NameConst = "BootstrapEditorTemplates";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -75,24 +75,12 @@ namespace wqwz.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string _NavBar = "_NavBar";
-            public readonly string AddTestData = "AddTestData";
-            public readonly string Edu = "Edu";
-            public readonly string AddRecruitTeacher = "AddRecruitTeacher";
-            public readonly string AddRecruitStu = "AddRecruitStu";
-            public readonly string PicUpload = "PicUpload";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string _NavBar = "_NavBar";
-            public const string AddTestData = "AddTestData";
-            public const string Edu = "Edu";
-            public const string AddRecruitTeacher = "AddRecruitTeacher";
-            public const string AddRecruitStu = "AddRecruitStu";
-            public const string PicUpload = "PicUpload";
         }
 
 
@@ -106,18 +94,16 @@ namespace wqwz.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string _NavBar = "_NavBar";
                 public readonly string Index = "Index";
             }
-            public readonly string _NavBar = "~/Views/Home/_NavBar.cshtml";
-            public readonly string Index = "~/Views/Home/Index.cshtml";
+            public readonly string Index = "~/Views/BootstrapEditorTemplates/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_HomeController : wqwz.Controllers.HomeController
+    public partial class T4MVC_BootstrapEditorTemplatesController : wqwz.Controllers.BootstrapEditorTemplatesController
     {
-        public T4MVC_HomeController() : base(Dummy.Instance) { }
+        public T4MVC_BootstrapEditorTemplatesController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -127,72 +113,6 @@ namespace wqwz.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void _NavBarOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult _NavBar()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames._NavBar);
-            _NavBarOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void AddTestDataOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult AddTestData()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddTestData);
-            AddTestDataOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void EduOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Edu()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edu);
-            EduOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void AddRecruitTeacherOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult AddRecruitTeacher()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddRecruitTeacher);
-            AddRecruitTeacherOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void AddRecruitStuOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult AddRecruitStu()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AddRecruitStu);
-            AddRecruitStuOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void PicUploadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult PicUpload()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PicUpload);
-            PicUploadOverride(callInfo);
             return callInfo;
         }
 
